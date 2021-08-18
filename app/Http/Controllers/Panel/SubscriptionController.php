@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Panel;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Subscription;
+use App\Models\SubscriptionPayment;
 use App\Models\Student;
 
 class SubscriptionController extends Controller
@@ -21,10 +22,12 @@ class SubscriptionController extends Controller
     public function infoAssinatura(Subscription $subscription)
     {
         $subscription = Subscription::where('id', $subscription->id)->with('student')->first();
+        $subscriptionPayment = SubscriptionPayment::where('subscription_id', $subscription->id)->get();
 
         return view('painel.subscription-info', [
             'page_name' => 'Painel Unyflex - Informações da Assinatura',
-            'subscription' => $subscription
+            'subscription' => $subscription,
+            'subscriptionPayment' => $subscriptionPayment
         ]);
     }
 
@@ -115,12 +118,22 @@ class SubscriptionController extends Controller
             $dataPagamento = $anoInicio . '-' . $mesInicio . '-' . $diaInicio;
             $dadosMes['dataVencimento'] = $dataPagamento;
             $dadosMes['valor'] = $valorMensal;
-            $dadosMes['status'] = 'Em aberto';
+            $dadosMes['status'] = 'payable';
+
+            $subscriptionPayment = new SubscriptionPayment();
+            $subscriptionPayment->subscription_id = $subscription->id;
+            $subscriptionPayment->monthly_value = $dadosMes['valor'];
+            $subscriptionPayment->due_date = $dadosMes['dataVencimento'];
+            $subscriptionPayment->status = $dadosMes['status'];
+            $subscriptionPayment->save();
 
             array_push($datasPagamento, $dadosMes);
             $mesInicio++;
         }
-
-        return $datasPagamento;
+        if ($subscriptionPayment->save()) {
+            return $datasPagamento;
+        } else {
+            return 'Não foi possível criar o parcelamento';
+        }
     }
 }
