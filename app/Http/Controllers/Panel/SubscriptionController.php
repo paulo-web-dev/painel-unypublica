@@ -94,6 +94,7 @@ class SubscriptionController extends Controller
 
         $numParcelas = $request->data['numparcelas'];
         $valorTotal = $subscription->final_value;
+
         $valorMensal = $valorTotal / $numParcelas;
         $valorMensal = number_format($valorMensal, 2);
 

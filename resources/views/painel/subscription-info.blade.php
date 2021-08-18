@@ -144,7 +144,7 @@
                                 <div class="relative mx-auto">
                                     <div
                                         class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border
-                                                                                                                                                                                                                                                                                                                                                                                                 text-gray-600 dark:bg-dark-1 dark:border-dark-4">
+                                                                                                                                                                                                                                                                                                                                                                                                         text-gray-600 dark:bg-dark-1 dark:border-dark-4">
                                         <i data-feather="calendar" class="w-4 h-4"></i>
                                     </div>
                                     <input type="text" autocomplete="off" class="data form-control pl-12" name="dataInicio"
@@ -156,7 +156,7 @@
                                 <div class="relative mx-auto">
                                     <div
                                         class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border
-                                                                                                                                                                                                                                                                                                                                                                                                    text-gray-600 dark:bg-dark-1 dark:border-dark-4">
+                                                                                                                                                                                                                                                                                                                                                                                                            text-gray-600 dark:bg-dark-1 dark:border-dark-4">
                                         <i data-feather="calendar" class="w-4 h-4"></i>
                                     </div>
                                     <input type="text" autocomplete="off" class="data form-control pl-12" name="dataTermino"
@@ -279,7 +279,8 @@
             urlFinal = url + 'painel/alunos/assinatura/parcelar/' + id;
             axios.post(urlFinal, {
                     data: {
-                        'numparcelas': numparcelas
+                        'numparcelas': numparcelas,
+                        'dataInicioParcelamento': dataInicioParcelamento
                     }
                 })
                 .then(function(response) {
