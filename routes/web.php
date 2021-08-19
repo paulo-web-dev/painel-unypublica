@@ -55,7 +55,10 @@ Route::get('/painel/alunos/assinatura/adicionar/{student}', 'Panel\SubscriptionC
 Route::post('/painel/alunos/assinatura/cadastrar', 'Panel\SubscriptionController@cadAssinatura')->name('cadastrar-assinatura');
 Route::put('/painel/alunos/assinatura/atualiza/{subscription}', 'Panel\SubscriptionController@updAssinatura')->name('atualiza-assinatura');
 Route::post('/painel/alunos/assinatura/parcelar/{subscription}', 'Panel\SubscriptionController@parcelarAssinatura')->name('parcelar-assinatura');
+Route::delete('/painel/alunos/assinatura/excluir/{subscription}', 'Panel\SubscriptionController@destroyAssinatura')->name('excluir-assinatura');
 Route::get('/painel/alunos/assinatura/{subscription}', 'Panel\SubscriptionController@infoAssinatura')->name('informacao-assinatura');
+
+Route::get('/painel/alunos/parcelas/{subscriptionPayment}', 'Panel\SubscriptionPaymentController@infoParcela')->name('informacao-parcela');
 
 Route::get('/painel/cursos', 'Panel\DashboardController@show')->name('painel-cursos');
 Route::get('/painel/tutoria', 'Panel\DashboardController@show')->name('painel-tutoria');

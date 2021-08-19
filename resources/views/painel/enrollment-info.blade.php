@@ -73,7 +73,7 @@
                     </div>
                     <div class="intro-y col-span-3 xxl:col-span-3">
                         <a href="javascript:;" data-toggle="modal" data-target="#excluirMatricula"
-                            class="btn btn-elevated-danger float-right mr-0 mb-2">Excluir Matrícula</a>
+                            class="btn btn-elevated-danger float-right mr-3 mt-3 mb-2">Excluir Matrícula</a>
                     </div>
                     <div class="intro-y col-span-12 xxl:col-span-6">
                         <div class="col-span-12 mt-5 ml-3">
@@ -184,7 +184,7 @@
                                 <div class="relative mx-auto">
                                     <div
                                         class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border
-                                                                                                                                                                                                                                                                                                                                             text-gray-600 dark:bg-dark-1 dark:border-dark-4">
+                                                                                                                                                                                                                                                                                                                                                 text-gray-600 dark:bg-dark-1 dark:border-dark-4">
                                         <i data-feather="calendar" class="w-4 h-4"></i>
                                     </div>
                                     <input type="text" id="dataPagamento" class="data form-control pl-12"
@@ -226,7 +226,7 @@
                                 <div class="relative mx-auto">
                                     <div
                                         class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            dark:bg-dark-1 dark:border-dark-4">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                dark:bg-dark-1 dark:border-dark-4">
                                         <i data-feather="calendar" class="w-4 h-4"></i>
                                     </div>
                                     <input type="text" autocomplete="off" class="data form-control pl-12" name="dataInicio"
@@ -238,7 +238,7 @@
                                 <div class="relative mx-auto">
                                     <div
                                         class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            dark:bg-dark-1 dark:border-dark-4">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                dark:bg-dark-1 dark:border-dark-4">
                                         <i data-feather="calendar" class="w-4 h-4"></i>
                                     </div>
                                     <input type="text" autocomplete="off" class="data form-control pl-12" name="dataTermino"

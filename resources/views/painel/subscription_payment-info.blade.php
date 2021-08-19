@@ -45,12 +45,6 @@
                         {{ $subscription->student->district }} -
                         {{ $subscription->student->city }}/{{ $subscription->student->state }}
                     </p>
-                    <a href="{{ route('informacao-aluno', ['id' => $subscription->student_id]) }}">
-                        <button class="btn btn-rounded-secondary w-auto bg-gray-500 text-black font-normal">
-                            <i data-feather="user" class="w-4 h-4 mr-2"></i>
-                            Voltar para informações do aluno
-                        </button>
-                    </a>
                 </div>
             </div>
         </div>
@@ -65,16 +59,12 @@
                     @method('PUT')
 
                     <!-- BEGIN: Products -->
-                    <div class="intro-y col-span-12 xxl:col-span-9">
+                    <div class="intro-y col-span-12 xxl:col-span-12">
                         <div class="flex items-center border-b border-gray-200 dark:border-dark-5">
                             <h2 class="font-medium text-base p-5 mr-auto ml-3">
                                 Informações da Assinatura
                             </h2>
                         </div>
-                    </div>
-                    <div class="intro-y col-span-3 xxl:col-span-3">
-                        <a href="javascript:;" data-toggle="modal" data-target="#excluirAssinatura"
-                            class="btn btn-elevated-danger float-right mr-3 mt-3 mb-2">Excluir Assinatura</a>
                     </div>
                     <div class="intro-y col-span-12 xxl:col-span-6">
                         <div class="flex mt-10 ml-0">
@@ -193,60 +183,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="intro-y box col-span-12 xxl:col-span-12">
-                        <div class="flex mt-10 ml-0  px-3">
-                            <table class="table table-auto">
-                                <thead>
-                                    <tr>
-                                        <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">#</th>
-                                        <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Data de
-                                            Vencimento</th>
-                                        <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Data de Pagamento
-                                        </th>
-                                        <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Valor</th>
-                                        <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Status</th>
-                                        <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="tabelaParcelamento">
-                                    @php
-                                        $i = 1;
-                                    @endphp
-                                    @foreach ($subscriptionPayment as $parcela)
-                                        <tr class="hover:bg-gray-200">
-                                            <td class="border">{{ $i }}</td>
-                                            <td class="border">{{ date('d/m/Y', strtotime($parcela->due_date)) }}
-                                            </td>
-                                            <td class="border">
-                                                {{ empty($parcela->payday) ? '--/--/--' : date('d/m/Y', strtotime($parcela->payday)) }}
-                                            </td>
-                                            <td class="border"> R$ {{ $parcela->monthly_value }}</td>
-                                            <td class="border">
-                                                @if ($parcela->status == 'expired')
-                                                    <span class="text-theme-6">Vencido</span>
-                                                @endif
-                                                @if ($parcela->status == 'payable')
-                                                    <span>Em aberto</span>
-                                                @endif
-                                                @if ($parcela->status == 'paid')
-                                                    <span class="text-theme-9">Pago</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <a class="edit flex items-center mr-3"
-                                                    href="{{ route('informacao-parcela', ['subscriptionPayment' => $parcela->id]) }}">
-                                                    <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Editar
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        @php
-                                            $i++;
-                                        @endphp
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+
                     <div class="intro-y box col-span-12 xxl:col-span-12 ml-3 mr-3 mt-12">
                         <input type="hidden" name="idAluno" value="{{ $subscription->student->id }}">
                         <button class="btn btn-primary w-full mr-2 mb-2"> <i data-feather="activity"
@@ -276,7 +213,7 @@
                             <div class="relative mx-auto">
                                 <div
                                     class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 text-gray-600 dark:bg-dark-1 dark:border-dark-4">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             text-gray-600 dark:bg-dark-1 dark:border-dark-4">
                                     <i data-feather="calendar" class="w-4 h-4"></i>
                                 </div>
                                 <input type="text" autocomplete="off" class="data form-control pl-12"
@@ -290,33 +227,6 @@
                             class="btn btn-primary w-24">Parcelar</button>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <!-- END: Modal Content -->
-    <!-- BEGIN: Modal Content -->
-    <div id="excluirAssinatura" class="modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form action="{{ route('excluir-assinatura', ['subscription' => $subscription->id]) }}" method="POST">
-                    <div class="modal-body p-0">
-                        <div class="p-5 text-center"> <i data-feather="x-circle"
-                                class="w-16 h-16 text-theme-6 mx-auto mt-3"></i>
-                            <div class="text-3xl mt-5">Você realmente quer excluir esta assinatura?</div>
-                            <div class="text-gray-600 mt-2">Todas as parcelas referente a esta assinatura, também serão
-                                excluidas.
-                                <br><br>Esse processo não poderá ser desfeito.
-                            </div>
-                        </div>
-                        <div class="px-5 pb-8 text-center">
-                            <button type="button" data-dismiss="modal"
-                                class="btn btn-outline-secondary w-24 dark:border-dark-5 dark:text-gray-300 mr-1">Cancelar</button>
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger w-24">Excluir</button>
-                        </div>
-                    </div>
-                </form>
             </div>
         </div>
     </div> <!-- END: Modal Content -->
@@ -380,21 +290,13 @@
                         }
 
                         tabelaParcelamento = '<tr class="hover:bg-gray-200">' +
-                            '<td class="border">' + (i + 1) + '</a></td> ' +
+                            '<td class="border"><a href="' + url + 'parcela/' + id + '">' + id + '</a></td> ' +
                             '<td class="border">' + dataVencimento + '</td> ' +
                             '<td class="border">--/--/--</td> ' +
                             '<td class="border"> R$' + valorParcela + '</td>' +
                             '<td class="border">' + statusParcela + '</td>' +
-                            '<td>' +
-                            '<a class="edit flex items-center mr-3" href="' + url + '/parcelas/' + id + '">' +
-                            '<i data-feather="check-square" class="w-4 h-4 mr-1"></i> Editar ' +
-                            '</a>' +
-                            '</td>' +
                             '</tr>'
                         cash('.tabelaParcelamento').append(tabelaParcelamento);
-                        feather.replace({
-                            "stroke-width": 1.5,
-                        });
                     }
                 })
                 .catch(function(error) {

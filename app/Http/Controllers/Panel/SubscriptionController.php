@@ -56,16 +56,6 @@ class SubscriptionController extends Controller
 
     public function updAssinatura(Subscription $subscription, Request $request)
     {
-        // if ($request->dataInicio != null) {
-        //     $request->dataInicio = implode("-", array_reverse(explode("/", $request->dataInicio)));
-        // }
-        // if ($request->dataTermino != null) {
-        //     $request->dataTermino = implode("-", array_reverse(explode("/", $request->dataTermino)));
-        // }
-        // if ($request->dataPagamento != null) {
-        //     $request->dataPagamento = implode("-", array_reverse(explode("/", $request->dataPagamento)));
-        // }
-
         $subscription->student_id = $request->idAluno;
         $subscription->value = $request->valor;
         $subscription->discount = $request->desconto;
@@ -87,6 +77,11 @@ class SubscriptionController extends Controller
 
     public function parcelarAssinatura(Subscription $subscription, Request $request)
     {
+
+        $subscriptionPayment = SubscriptionPayment::where('subscription_id', $subscription->id)->get();
+        foreach ($subscriptionPayment as $parcela) {
+            $parcela->delete();
+        }
 
         $dataInicioParcelamento = $request->data['dataInicioParcelamento'];
         $dataInicioParcelamento = explode('-', $dataInicioParcelamento);
@@ -126,6 +121,7 @@ class SubscriptionController extends Controller
             $subscriptionPayment->due_date = $dadosMes['dataVencimento'];
             $subscriptionPayment->status = $dadosMes['status'];
             $subscriptionPayment->save();
+            $dadosMes['id'] = $subscriptionPayment->id;
 
             array_push($datasPagamento, $dadosMes);
             $mesInicio++;
@@ -134,6 +130,16 @@ class SubscriptionController extends Controller
             return $datasPagamento;
         } else {
             return 'Não foi possível criar o parcelamento';
+        }
+    }
+
+    public function destroyAssinatura(Subscription $subscription)
+    {
+        $student = $subscription->student_id;
+        if ($subscription->delete()) {
+            return redirect()->route('informacao-aluno', ['id' => $student])->with('message', 'subscription_deleted');
+        } else {
+            return redirect()->route('informacao-assinatura', ['subscription' => $subscription->id])->with('message', 'subscription_delete_error');
         }
     }
 }
