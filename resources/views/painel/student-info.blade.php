@@ -259,7 +259,13 @@
                                                     {{ $enrollment->classes->subtitle }}
                                                     (# {{ $enrollment->classes->id }})
                                                 </a>
-                                                <div class="text-gray-600"># {{ $enrollment->id }}</div>
+                                                <div class="text-gray-600"># {{ $enrollment->id }}
+                                                    <span class="ml-10"><strong>Data de Vigência: </strong>
+                                                        {{ date('d/m/Y', strtotime($enrollment->start_date)) }}
+                                                        à
+                                                        {{ date('d/m/Y', strtotime($enrollment->end_date)) }}
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     @endif
@@ -278,8 +284,29 @@
                                             </a>
                                             <div class="text-gray-600">
                                                 <span><strong>#</strong> {{ $itemSubscription->id }}</span>
-                                                <span class="ml-5"><strong>Status</strong>
-                                                    {{ $itemSubscription->status }}</span>
+                                                <span class="ml-5"><strong>Status: </strong>
+                                                    @if ($itemSubscription->status == 'not_checked')
+                                                        Não conferido
+                                                    @endif
+                                                    @if ($itemSubscription->status == 'checked')
+                                                        Conferido
+                                                    @endif
+                                                    @if ($itemSubscription->status == 'scheduled_billing')
+                                                        Pagamento agendado
+                                                    @endif
+                                                    @if ($itemSubscription->status == 'bill_sent')
+                                                        Pagamento solicitado
+                                                    @endif
+                                                    @if ($itemSubscription->status == 'identified_payment')
+                                                        Pagamento identificado
+                                                    @endif
+                                                    @if ($itemSubscription->status == 'commercial_pending')
+                                                        Pendência Comercial
+                                                    @endif
+                                                    @if ($itemSubscription->status == 'financial_pending')
+                                                        Pendência Financeira
+                                                    @endif
+                                                </span>
                                             </div>
                                         </div>
                                     </div>

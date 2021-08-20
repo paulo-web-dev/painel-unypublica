@@ -39,7 +39,7 @@ class StudentController extends Controller
     public function formAluno()
     {
         return view('painel.form-student', [
-            'page_name' => 'Painel Unyflex - Adicionar do Aluno'
+            'page_name' => 'Painel Unyflex - Adicionar Aluno'
         ]);
     }
 

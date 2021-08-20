@@ -64,7 +64,11 @@ Route::put('/painel/alunos/parcelas/atualiza/{subscriptionPayment}', 'Panel\Subs
 Route::delete('/painel/alunos/parcelas/excluir/{subscriptionPayment}', 'Panel\SubscriptionPaymentController@destroyParcela')->name('excluir-parcela');
 Route::get('/painel/alunos/parcelas/{subscriptionPayment}', 'Panel\SubscriptionPaymentController@infoParcela')->name('informacao-parcela');
 
+Route::get('/painel/professores', 'Panel\TeacherController@show')->name('painel-professores');
+Route::get('/painel/professores/adicionar', 'Panel\TeacherController@formProfessor')->name('adicionar-professor');
+Route::post('/painel/professores/cadastrar', 'Panel\TeacherController@cadProfessor')->name('cadastrar-professor');
+
+
 Route::get('/painel/cursos', 'Panel\DashboardController@show')->name('painel-cursos');
 Route::get('/painel/tutoria', 'Panel\DashboardController@show')->name('painel-tutoria');
-Route::get('/painel/professores', 'Panel\DashboardController@show')->name('painel-professores');
 Route::get('/painel/materiais', 'Panel\DashboardController@show')->name('painel-materiais');

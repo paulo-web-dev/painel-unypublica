@@ -74,14 +74,11 @@
         <div class="top-bar-boxed flex items-center">
             <!-- BEGIN: Logo -->
             <a href="" class="-intro-x hidden md:flex">
-                <img alt="Rubick Tailwind HTML Admin Template" class="w-6" src="{{ url('dist/images/logo.svg') }}">
-                <span class="text-white text-lg ml-3"> Ru<span class="font-medium">bick</span> </span>
+                <span class="text-white text-lg font-light ml-3"> Painel <span class="font-bold">UNYFLEX</span> </span>
             </a>
             <!-- END: Logo -->
             <!-- BEGIN: Breadcrumb -->
-            <div class="-intro-x breadcrumb breadcrumb--light mr-auto"> <a href="">Painel Unyflex</a> <i
-                    data-feather="chevron-right" class="breadcrumb__icon"></i> <a href=""
-                    class="breadcrumb--active">Dashboard</a> </div>
+            <div class="-intro-x breadcrumb breadcrumb--light mr-auto"> </div>
             <!-- END: Breadcrumb -->
             <!-- BEGIN: Search -->
             <div class="intro-x relative mr-3 sm:mr-6">
