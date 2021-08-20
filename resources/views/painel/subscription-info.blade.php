@@ -205,7 +205,23 @@
                                         </th>
                                         <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Valor</th>
                                         <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Status</th>
-                                        <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Ações</th>
+                                        <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
+                                            Ações
+                                            <div class="dropdown ml-auto float-right">
+                                                <a class="dropdown-toggle w-5 h-5 block" href="javascript:;"
+                                                    aria-expanded="false"> <i data-feather="more-horizontal"
+                                                        class="w-5 h-5 text-gray-600 dark:text-gray-300"></i>
+                                                </a>
+                                                <div class="dropdown-menu w-40">
+                                                    <div class="dropdown-menu__content">
+                                                        <a href="{{ route('adicionar-parcela', ['subscription' => $subscription->id]) }}"
+                                                            class="items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 ">
+                                                            <i data-feather="plus" class="w-4 h-4 mr-2"></i> <strong>Nova
+                                                                Parcela</strong></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody class="tabelaParcelamento">
@@ -232,8 +248,8 @@
                                                     <span class="text-theme-9">Pago</span>
                                                 @endif
                                             </td>
-                                            <td>
-                                                <a class="edit flex items-center mr-3"
+                                            <td class="border">
+                                                <a class="edit flex items-center mr-3 float-left"
                                                     href="{{ route('informacao-parcela', ['subscriptionPayment' => $parcela->id]) }}">
                                                     <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Editar
                                                 </a>
@@ -276,7 +292,7 @@
                             <div class="relative mx-auto">
                                 <div
                                     class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 text-gray-600 dark:bg-dark-1 dark:border-dark-4">
+                                                                                text-gray-600 dark:bg-dark-1 dark:border-dark-4">
                                     <i data-feather="calendar" class="w-4 h-4"></i>
                                 </div>
                                 <input type="text" autocomplete="off" class="data form-control pl-12"
@@ -319,7 +335,43 @@
                 </form>
             </div>
         </div>
-    </div> <!-- END: Modal Content -->
+    </div>
+    @if (session()->get('message') == 'subscriptionPayment_created')
+        <!-- END: Modal Toggle -->
+        <!-- BEGIN: Modal Content -->
+        <div id="modalInfo" class="modal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="p-5 text-center"> <i data-feather="check-circle"
+                            class="w-16 h-16 text-theme-9 mx-auto mt-3"></i>
+                        <div class="text-3xl mt-5">Bom trabalho!</div>
+                        <div class="text-gray-600 mt-2">A parcela foi criada com sucesso!</div>
+                    </div>
+                    <div class="px-5 pb-8 text-center"> <button type="button" data-dismiss="modal"
+                            class="btn btn-primary w-24">Ok</button> </div>
+                </div>
+            </div>
+        </div> <!-- END: Modal Content -->
+
+    @endif
+    @if (session()->get('message') == 'subscriptionPayment_deleted')
+        <!-- END: Modal Toggle -->
+        <!-- BEGIN: Modal Content -->
+        <div id="modalInfo" class="modal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="p-5 text-center"> <i data-feather="check-circle"
+                            class="w-16 h-16 text-theme-9 mx-auto mt-3"></i>
+                        <div class="text-3xl mt-5">Bom trabalho!</div>
+                        <div class="text-gray-600 mt-2">A parcela foi excluida com sucesso!</div>
+                    </div>
+                    <div class="px-5 pb-8 text-center"> <button type="button" data-dismiss="modal"
+                            class="btn btn-primary w-24">Ok</button> </div>
+                </div>
+            </div>
+        </div> <!-- END: Modal Content -->
+
+    @endif
     @if (session()->get('message') == 'subscription_updated')
         <!-- END: Modal Toggle -->
         <!-- BEGIN: Modal Content -->
@@ -349,13 +401,12 @@
     @endif
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        var url = "http://localhost/unipublica-site/public/";
+        var url = 'http://localhost/unipublica-site/public/';
 
         function fazerParcelamento(id) {
 
             var numparcelas = cash('#numparcelas').val();
             var dataInicioParcelamento = cash('#dataInicioParcelamento').val();
-
             urlFinal = url + 'painel/alunos/assinatura/parcelar/' + id;
             axios.post(urlFinal, {
                     data: {
@@ -386,7 +437,8 @@
                             '<td class="border"> R$' + valorParcela + '</td>' +
                             '<td class="border">' + statusParcela + '</td>' +
                             '<td>' +
-                            '<a class="edit flex items-center mr-3" href="' + url + '/parcelas/' + id + '">' +
+                            '<a class="edit flex items-center mr-3" href="' + url + 'painel/alunos/parcelas/' + id +
+                            '">' +
                             '<i data-feather="check-square" class="w-4 h-4 mr-1"></i> Editar ' +
                             '</a>' +
                             '</td>' +

@@ -22,7 +22,7 @@ class SubscriptionController extends Controller
     public function infoAssinatura(Subscription $subscription)
     {
         $subscription = Subscription::where('id', $subscription->id)->with('student')->first();
-        $subscriptionPayment = SubscriptionPayment::where('subscription_id', $subscription->id)->get();
+        $subscriptionPayment = SubscriptionPayment::where('subscription_id', $subscription->id)->orderBy('due_date', 'ASC')->get();
 
         return view('painel.subscription-info', [
             'page_name' => 'Painel Unyflex - Informações da Assinatura',
