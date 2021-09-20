@@ -25,4 +25,22 @@ class TeacherController extends Controller
             'page_name' => 'Painel Unyflex - Adicionar Professor'
         ]);
     }
+
+    public function cadProfessor(Request $request)
+    {
+        $teacher = new Teacher();
+        $teacher->name = $request->nome;
+        $teacher->cpf = $request->cpf;
+        $teacher->email = $request->email;
+        $teacher->phone = $request->telefone;
+        $teacher->short_resume = $request->status;
+        $teacher->full_resume = $request->status;
+        $teacher->status = $request->status;
+
+        if ($teacher->save()) {
+            return redirect()->route('informacao-professor', ['id' => $teacher->id])->with('message', 'success');
+        } else {
+            return redirect()->route('informacao-professor', ['id' => $teacher->id])->with('message', 'erro');
+        }
+    }
 }

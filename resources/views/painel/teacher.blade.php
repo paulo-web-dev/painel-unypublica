@@ -7,9 +7,9 @@
     </h2>
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-            <button class="btn btn-primary shadow-md mr-2">
+            <a href="{{ route('adicionar-professor') }}" class="btn btn-primary shadow-md mr-2">
                 <i data-feather="plus" class="w-4 h-4 mr-2"></i> Adicionar professor
-            </button>
+            </a>
             <div class="hidden md:block mx-auto text-gray-600"></div>
             <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                 <div class="w-56 relative text-gray-700 dark:text-gray-300">

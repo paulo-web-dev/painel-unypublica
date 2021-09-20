@@ -14,25 +14,16 @@
                 <div class="col-span-12 xl:col-span-6">
                     <div class="mt-3">
                         <label for="update-profile-form-7" class="form-label">Nome</label>
-                        <input id="update-profile-form-7" type="text" class="form-control" placeholder="Nome do professor"
-                            value="">
+                        <input id="update-profile-form-7" type="text" name="nome" class="form-control"
+                            placeholder="Nome do professor" value="">
                     </div>
                     <div class="mt-3">
                         <label for="update-profile-form-6" class="form-label">Email</label>
-                        <input id="update-profile-form-6" type="text" class="form-control" placeholder="E-mail do professor"
-                            value="">
+                        <input id="update-profile-form-6" type="text" name="email" class="form-control"
+                            placeholder="E-mail do professor" value="">
                     </div>
                     <div class="mt-3">
-                        <label for="update-profile-form-9" class="form-label">CPF</label>
-                        <input id="update-profile-form-9" type="text" class="form-control" placeholder="CPF do professor"
-                            value="">
-                    </div>
-                </div>
-                <div class="col-span-12 xl:col-span-6">
-                    <div class="mt-3">
-                        <label for="update-profile-form-7" class="form-label">Telefone</label>
-                        <input id="update-profile-form-7" type="text" class="form-control"
-                            placeholder="Telefone do professor" value="">
+                        <label for="short-resume" class="form-label">Breve Currículo</label>
                     </div>
                     <div class="mt-3">
                         <label for="status" class="form-label"><strong>Status</strong></label>
@@ -44,6 +35,22 @@
                                 <option value="disabled">Desabilitado</option>
                             </select>
                         </div>
+                    </div>
+
+                </div>
+                <div class="col-span-12 xl:col-span-6">
+                    <div class="mt-3">
+                        <label for="update-profile-form-7" class="form-label">Telefone</label>
+                        <input id="update-profile-form-7" type="text" name="telefone" class="form-control"
+                            placeholder="Telefone do professor" value="">
+                    </div>
+                    <div class="mt-3">
+                        <label for="update-profile-form-9" class="form-label">CPF</label>
+                        <input id="update-profile-form-9" type="text" name="cpf" class="form-control"
+                            placeholder="CPF do professor" value="">
+                    </div>
+                    <div class="mt-3">
+                        <label for="full-resume" class="form-label">Currículo Completo</label>
                     </div>
                 </div>
             </div>

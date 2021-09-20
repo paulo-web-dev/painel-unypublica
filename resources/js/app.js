@@ -16,7 +16,7 @@ import "./tippy";
 import "./datepicker";
 import "./tom-select";
 //import "./dropzone";
-//import "./ckeditor";
+// import "./ckeditor";
 import "./validation";
 import "./zoom";
 import "./notification";
