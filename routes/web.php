@@ -67,6 +67,9 @@ Route::get('/painel/alunos/parcelas/{subscriptionPayment}', 'Panel\SubscriptionP
 Route::get('/painel/professores', 'Panel\TeacherController@show')->name('painel-professores');
 Route::get('/painel/professores/adicionar', 'Panel\TeacherController@formProfessor')->name('adicionar-professor');
 Route::post('/painel/professores/cadastrar', 'Panel\TeacherController@cadProfessor')->name('cadastrar-professor');
+Route::put('/painel/professores/atualiza/{teacher}', 'Panel\TeacherController@updProfessor')->name('atualiza-professor');
+Route::get('/painel/professores/{teacher}', 'Panel\TeacherController@infoProfessor')->name('informacao-professor');
+
 
 
 Route::get('/painel/cursos', 'Panel\DashboardController@show')->name('painel-cursos');

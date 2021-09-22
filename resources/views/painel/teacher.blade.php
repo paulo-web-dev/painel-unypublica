@@ -39,7 +39,7 @@
                             </a>
                             <div class="dropdown-menu w-40">
                                 <div class="dropdown-menu__content box dark:bg-dark-1 p-2">
-                                    <a href=""
+                                    <a href="{{ route('informacao-professor', ['teacher' => $teacher->id]) }}"
                                         class="flex items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
                                         <i data-feather="edit-2" class="w-4 h-4 mr-2"></i> Editar </a>
                                     <a href=""
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="text-center lg:text-left p-5">
-                        <div>{{ $teacher->short_resume }}</div>
+                        <div>{!! $teacher->short_resume !!}</div>
                         <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-5"> <i
                                 data-feather="mail" class="w-3 h-3 mr-2"></i> {{ $teacher->email }} </div>
                         <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-1"> <i

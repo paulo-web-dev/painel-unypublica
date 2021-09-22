@@ -28,9 +28,18 @@ class TeacherController extends Controller
         ]);
     }
 
+    public function infoProfessor(Teacher $teacher)
+    {
+        $teacher = Teacher::where('id', $teacher->id)->first();
+
+        return view('painel.teacher-info', [
+            'page_name' => 'Painel Unyflex - Informações do Professor',
+            'teacher' => $teacher
+        ]);
+    }
+
     public function cadProfessor(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
             'nome' => 'required|max:255',
             'cpf' => 'required|unique:teachers,cpf'
@@ -53,6 +62,24 @@ class TeacherController extends Controller
             return redirect()->route('informacao-professor', ['id' => $teacher->id])->with('message', 'success');
         } else {
             return redirect()->route('informacao-professor', ['id' => $teacher->id])->with('message', 'erro');
+        }
+    }
+
+    public function updProfessor(Teacher $teacher, Request $request)
+    {
+
+        $teacher->name = $request->nome;
+        $teacher->cpf = $request->cpf;
+        $teacher->email = $request->email;
+        $teacher->phone = $request->telefone;
+        $teacher->short_resume = $request->short_resume;
+        $teacher->full_resume = $request->full_resume;
+        $teacher->status = $request->status;
+
+        if ($teacher->save()) {
+            return redirect()->route('informacao-professor', ['teacher' => $teacher->id])->with('message', 'teacher_updated');
+        } else {
+            return redirect()->route('informacao-professor', ['teacher' => $teacher->id])->with('message', 'teacher_update_error');
         }
     }
 }
