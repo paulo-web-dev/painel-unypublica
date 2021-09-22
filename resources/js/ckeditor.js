@@ -48,7 +48,6 @@ let editorConfig = {
         CodePlugin,
         SubscriptPlugin,
         SuperscriptPlugin,
-        EasyImage,
         Heading,
         HeadingButtonsUI,
         Highlight,
@@ -75,7 +74,7 @@ let editorConfig = {
     },
 };
 
-cash(".editor").each(function () {
+cash(".editor").each(function() {
     let editor = ClassicEditor;
     let options = editorConfig;
     let el = this;
