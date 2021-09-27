@@ -59,9 +59,9 @@ class TeacherController extends Controller
         $teacher->status = $request->status;
 
         if ($teacher->save()) {
-            return redirect()->route('informacao-professor', ['id' => $teacher->id])->with('message', 'success');
+            return redirect()->route('informacao-professor', ['teacher' => $teacher->id])->with('message', 'success');
         } else {
-            return redirect()->route('informacao-professor', ['id' => $teacher->id])->with('message', 'erro');
+            return redirect()->route('informacao-professor', ['teacher' => $teacher->id])->with('message', 'erro');
         }
     }
 
@@ -80,6 +80,15 @@ class TeacherController extends Controller
             return redirect()->route('informacao-professor', ['teacher' => $teacher->id])->with('message', 'teacher_updated');
         } else {
             return redirect()->route('informacao-professor', ['teacher' => $teacher->id])->with('message', 'teacher_update_error');
+        }
+    }
+
+    public function destroyProfessor(Teacher $teacher)
+    {
+        if ($teacher->delete()) {
+            return redirect()->route('painel-professores')->with('message', 'teacher_deleted');
+        } else {
+            return redirect()->route('informacao-professor', ['teacher' => $teacher->id])->with('message', 'teacher_delete_error');
         }
     }
 }
