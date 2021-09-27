@@ -89,7 +89,7 @@
                     <div class="p-5 text-center"> <i data-feather="check-circle"
                             class="w-16 h-16 text-theme-9 mx-auto mt-3"></i>
                         <div class="text-3xl mt-5">Bom trabalho!</div>
-                        <div class="text-gray-600 mt-2">Os dados dos professores foram atualizados com sucesso!</div>
+                        <div class="text-gray-600 mt-2">Os dados do professor foram atualizados com sucesso!</div>
                     </div>
                     <div class="px-5 pb-8 text-center"> <button type="button" data-dismiss="modal"
                             class="btn btn-primary w-24">Ok</button> </div>
@@ -97,6 +97,25 @@
             </div>
         </div> <!-- END: Modal Content -->
 
+    @endif
+
+    @if (session()->get('message') == 'teacher_update_error')
+        <!-- BEGIN: Modal Content -->
+        <div id="modalInfo" class="modal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body p-0">
+                        <div class="p-5 text-center"> <i data-feather="check-circle"
+                                class="w-16 h-16 text-theme-9 mx-auto mt-3"></i>
+                            <div class="text-3xl mt-5">Erro!</div>
+                            <div class="text-gray-600 mt-2">Não foi possível atualizar os dados do professor!</div>
+                        </div>
+                        <div class="px-5 pb-8 text-center"> <button type="button" data-dismiss="modal"
+                                class="btn btn-primary w-24">Ok</button> </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- END: Modal Content -->
     @endif
 @endsection
 @push('custom-scripts')

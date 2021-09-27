@@ -11,12 +11,12 @@
                 <i data-feather="plus" class="w-4 h-4 mr-2"></i> Adicionar professor
             </a>
             <div class="hidden md:block mx-auto text-gray-600"></div>
-            <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+            {{-- <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                 <div class="w-56 relative text-gray-700 dark:text-gray-300">
                     <input type="text" class="form-control w-56 box pr-10 placeholder-theme-13" placeholder="Pesquisar...">
                     <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-feather="search"></i>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <!-- BEGIN: Users Layout -->
         @foreach ($teachers as $teacher)
@@ -29,7 +29,8 @@
                                     src="{{ url('dist/images/profile-11.jpg') }}">
                             </div>
                             <div class="lg:ml-4 text-center lg:text-left mt-3 lg:mt-0">
-                                <a href="" class="font-medium">{{ $teacher->name }}</a>
+                                <a href="{{ route('informacao-professor', ['teacher' => $teacher->id]) }}"
+                                    class="font-medium">{{ $teacher->name }}</a>
                                 <div class="text-gray-600 text-xs mt-0.5">{{ $teacher->cpf }}</div>
                             </div>
                         </div>
@@ -42,7 +43,8 @@
                                     <a href="{{ route('informacao-professor', ['teacher' => $teacher->id]) }}"
                                         class="flex items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
                                         <i data-feather="edit-2" class="w-4 h-4 mr-2"></i> Editar </a>
-                                    <a href=""
+                                    <a href="javascript:;" data-toggle="modal"
+                                        data-target="#excluirProfessor{{ $teacher->id }}"
                                         class="flex items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
                                         <i data-feather="trash" class="w-4 h-4 mr-2"></i> Excluir </a>
                                 </div>
@@ -55,6 +57,31 @@
                                 data-feather="mail" class="w-3 h-3 mr-2"></i> {{ $teacher->email }} </div>
                         <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-1"> <i
                                 data-feather="phone" class="w-3 h-3 mr-2"></i> {{ $teacher->phone }} </div>
+                    </div>
+                </div>
+            </div>
+            <!-- BEGIN: Modal Content -->
+            <div id="excluirProfessor{{ $teacher->id }}" class="modal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="{{ route('excluir-professor', ['teacher' => $teacher->id]) }}" method="POST">
+                            <div class="modal-body p-0">
+                                <div class="p-5 text-center"> <i data-feather="x-circle"
+                                        class="w-16 h-16 text-theme-6 mx-auto mt-3"></i>
+                                    <div class="text-3xl mt-5">Você realmente quer excluir este professor?</div>
+                                    <div class="text-gray-600 mt-2">
+                                        Esse processo não poderá ser desfeito.
+                                    </div>
+                                </div>
+                                <div class="px-5 pb-8 text-center">
+                                    <button type="button" data-dismiss="modal"
+                                        class="btn btn-outline-secondary w-24 dark:border-dark-5 dark:text-gray-300 mr-1">Cancelar</button>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger w-24">Excluir</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
