@@ -198,7 +198,8 @@
                     <div class="intro-y box col-span-12 xxl:col-span-6">
                         <div class="flex mt-5 ml-0">
                             <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                                <label for="metodoPagamento" class="form-label"><strong>Método de Pagamento</strong></label>
+                                <label for="metodoPagamento" class="form-label"><strong>Método de
+                                        Pagamento</strong></label>
                                 <input id="metodoPagamento" type="text" name="metodoPagamento" class="form-control"
                                     placeholder="Boleto, cartão de crédito" value="{{ $enrollment->payment_method }}">
                             </div>
@@ -215,7 +216,8 @@
                                     value="{{ $enrollment->payment_slip }}">
                             </div>
                             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                <label for="codigoTransacao" class="form-label"><strong>Código de Transação</strong></label>
+                                <label for="codigoTransacao" class="form-label"><strong>Código de
+                                        Transação</strong></label>
                                 <input id="codigoTransacao" type="text" name="codigoTransacao" class="form-control"
                                     value="{{ $enrollment->transaction_code }}">
                             </div>
@@ -225,8 +227,7 @@
                                 <label for="dataInicio" class="form-label"><strong>Data de Início</strong></label>
                                 <div class="relative mx-auto">
                                     <div
-                                        class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                dark:bg-dark-1 dark:border-dark-4">
+                                        class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4">
                                         <i data-feather="calendar" class="w-4 h-4"></i>
                                     </div>
                                     <input type="text" autocomplete="off" class="data form-control pl-12" name="dataInicio"
@@ -237,8 +238,7 @@
                                 <label for="dataTermino" class="form-label"><strong>Data de Termino</strong></label>
                                 <div class="relative mx-auto">
                                     <div
-                                        class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                dark:bg-dark-1 dark:border-dark-4">
+                                        class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4">
                                         <i data-feather="calendar" class="w-4 h-4"></i>
                                     </div>
                                     <input type="text" autocomplete="off" class="data form-control pl-12" name="dataTermino"
@@ -249,8 +249,8 @@
                         <div class="flex mt-10 ml-0">
                             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                 <label for="carteira" class="form-label"><strong>Carteira</strong></label>
-                                <input id="carteira" type="text" name="carteira" class="form-control" placeholder="Carteira"
-                                    value="{{ $enrollment->wallet }}">
+                                <input id="carteira" type="text" name="carteira" class="form-control"
+                                    placeholder="Carteira" value="{{ $enrollment->wallet }}">
                             </div>
                             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                 <label for="unidade" class="form-label"><strong>Unidade</strong></label>
