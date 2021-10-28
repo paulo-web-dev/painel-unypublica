@@ -39,14 +39,12 @@
                             <div class="mt-2">
                                 <select data-placeholder="Selecione o status do professor" name="status"
                                     class="tom-select w-full">
-                                    @if ($teacher->status == 'able')
-                                        Habilitado
-                                    @endif
-                                    @if ($teacher->status == 'disable')
-                                        Desabilitado
-                                    @endif
-                                    <option value="able">Habilitado</option>
-                                    <option value="disabled">Desabilitado</option>
+                                    <option @if ($teacher->status == 'able')
+                                        selected
+                                        @endif value="able">Habilitado</option>
+                                    <option @if ($teacher->status == 'disabled')
+                                        selected
+                                        @endif value="disabled">Desabilitado</option>
                                 </select>
                             </div>
                         </div>

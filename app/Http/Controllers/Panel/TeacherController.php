@@ -30,8 +30,6 @@ class TeacherController extends Controller
 
     public function infoProfessor(Teacher $teacher)
     {
-        $teacher = Teacher::where('id', $teacher->id)->first();
-
         return view('painel.teacher-info', [
             'page_name' => 'Painel Unyflex - Informações do Professor',
             'teacher' => $teacher
