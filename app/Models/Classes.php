@@ -17,7 +17,9 @@ class Classes extends Model
         'end_date',
         'type',
         'status',
-        'confirmed'
+        'confirmed',
+        'workload',
+        'live'
     ];
 
 
@@ -47,5 +49,4 @@ class Classes extends Model
     {
         return $this->hasMany(Enrollment::class, 'classes_id', 'id')->with('student', 'enrollmentobservations');
     }
-
 }

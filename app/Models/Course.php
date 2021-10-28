@@ -34,7 +34,8 @@ class Course extends Model
         'updated_at',
     ];
 
-    public function classes(){
+    public function classes()
+    {
         return $this->hasMany(Classes::class, 'course_id', 'id')->with('panels', 'enrollment');
     }
 
@@ -42,6 +43,4 @@ class Course extends Model
     {
         return $this->belongsToMany(Category::class, 'category_courses', 'course_id', 'category_id');
     }
-
-
 }
