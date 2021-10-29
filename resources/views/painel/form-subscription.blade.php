@@ -88,14 +88,14 @@
                                 <div class="mt-2">
                                     <select data-placeholder="Selecione o status da assinatura" name="status"
                                         class="tom-select w-full">
-                                        <<option selected disabled>Selecione</option>
-                                            <option value="not_checked">Não conferido</option>
-                                            <option value="checked">Conferido</option>
-                                            <option value="scheduled_billing">Pagamento agendado</option>
-                                            <option value="bill_sent">Pagamento solicitado</option>
-                                            <option value="identified_payment">Pagamento identificado</option>
-                                            <option value="commercial_pending">Pendência Comercial</option>
-                                            <option value="financial_pending">Pendência Financeira</option>
+                                        <option selected disabled>Selecione</option>
+                                        <option value="not_checked">Não conferido</option>
+                                        <option value="checked">Conferido</option>
+                                        <option value="scheduled_billing">Pagamento agendado</option>
+                                        <option value="bill_sent">Pagamento solicitado</option>
+                                        <option value="identified_payment">Pagamento identificado</option>
+                                        <option value="commercial_pending">Pendência Comercial</option>
+                                        <option value="financial_pending">Pendência Financeira</option>
                                     </select>
                                 </div>
                             </div>
@@ -114,7 +114,7 @@
                                 <div class="relative mx-auto">
                                     <div
                                         class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border
-                                                                                                                                                                                                     text-gray-600 dark:bg-dark-1 dark:border-dark-4">
+                                                                                                                                                                                                         text-gray-600 dark:bg-dark-1 dark:border-dark-4">
                                         <i data-feather="calendar" class="w-4 h-4"></i>
                                     </div>
                                     <input type="text" autocomplete="off" class="data form-control pl-12" name="dataInicio"
@@ -126,7 +126,7 @@
                                 <div class="relative mx-auto">
                                     <div
                                         class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border
-                                                                                                                                                                                                        text-gray-600 dark:bg-dark-1 dark:border-dark-4">
+                                                                                                                                                                                                            text-gray-600 dark:bg-dark-1 dark:border-dark-4">
                                         <i data-feather="calendar" class="w-4 h-4"></i>
                                     </div>
                                     <input type="text" autocomplete="off" class="data form-control pl-12" name="dataTermino"

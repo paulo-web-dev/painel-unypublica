@@ -8,6 +8,7 @@
             Matrícula
         </h2>
     </div>
+
     <div class="grid grid-cols-12 gap-6 mt-5">
         <!-- BEGIN: Profile Menu -->
         <div class="col-span-12 box lg:col-span-4 xxl:col-span-3 flex lg:block flex-col-reverse">
@@ -44,6 +45,12 @@
                         {{ $subscription->student->district }} -
                         {{ $subscription->student->city }}/{{ $subscription->student->state }}
                     </p>
+                    <a href="{{ route('informacao-aluno', ['id' => $subscription->student_id]) }}">
+                        <button class="btn btn-rounded-secondary w-auto bg-gray-500 text-black font-normal">
+                            <i data-feather="user" class="w-4 h-4 mr-2"></i>
+                            Voltar para informações do aluno
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -58,12 +65,16 @@
                     @method('PUT')
 
                     <!-- BEGIN: Products -->
-                    <div class="intro-y col-span-12 xxl:col-span-12">
+                    <div class="intro-y col-span-12 xxl:col-span-9">
                         <div class="flex items-center border-b border-gray-200 dark:border-dark-5">
                             <h2 class="font-medium text-base p-5 mr-auto ml-3">
                                 Informações da Assinatura
                             </h2>
                         </div>
+                    </div>
+                    <div class="intro-y col-span-3 xxl:col-span-3">
+                        <a href="javascript:;" data-toggle="modal" data-target="#excluirAssinatura"
+                            class="btn btn-elevated-danger float-right mr-3 mt-3 mb-2">Excluir Assinatura</a>
                     </div>
                     <div class="intro-y col-span-12 xxl:col-span-6">
                         <div class="flex mt-10 ml-0">
@@ -143,8 +154,7 @@
                                 <label for="dataInicio" class="form-label"><strong>Data de Início</strong></label>
                                 <div class="relative mx-auto">
                                     <div
-                                        class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border
-                                                                                                                                                                                                                                                                                                                                                                                                 text-gray-600 dark:bg-dark-1 dark:border-dark-4">
+                                        class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4">
                                         <i data-feather="calendar" class="w-4 h-4"></i>
                                     </div>
                                     <input type="text" autocomplete="off" class="data form-control pl-12" name="dataInicio"
@@ -155,8 +165,7 @@
                                 <label for="dataTermino" class="form-label"><strong>Data de Termino</strong></label>
                                 <div class="relative mx-auto">
                                     <div
-                                        class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border
-                                                                                                                                                                                                                                                                                                                                                                                                    text-gray-600 dark:bg-dark-1 dark:border-dark-4">
+                                        class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600 dark:bg-dark-1 dark:border-dark-4">
                                         <i data-feather="calendar" class="w-4 h-4"></i>
                                     </div>
                                     <input type="text" autocomplete="off" class="data form-control pl-12" name="dataTermino"
@@ -196,15 +205,60 @@
                                         </th>
                                         <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Valor</th>
                                         <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">Status</th>
+                                        <th class="border border-b-2 dark:border-dark-5 whitespace-nowrap">
+                                            Ações
+                                            <div class="dropdown ml-auto float-right">
+                                                <a class="dropdown-toggle w-5 h-5 block" href="javascript:;"
+                                                    aria-expanded="false"> <i data-feather="more-horizontal"
+                                                        class="w-5 h-5 text-gray-600 dark:text-gray-300"></i>
+                                                </a>
+                                                <div class="dropdown-menu w-40">
+                                                    <div class="dropdown-menu__content">
+                                                        <a href="{{ route('adicionar-parcela', ['subscription' => $subscription->id]) }}"
+                                                            class="items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 ">
+                                                            <i data-feather="plus" class="w-4 h-4 mr-2"></i> <strong>Nova
+                                                                Parcela</strong></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr class="hover:bg-gray-200">
-                                        <td class="border">1</td>
-                                        <td class="border">Angelina</td>
-                                        <td class="border">Jolie</td>
-                                        <td class="border">@angelinajolie</td>
-                                    </tr>
+                                <tbody class="tabelaParcelamento">
+                                    @php
+                                        $i = 1;
+                                    @endphp
+                                    @foreach ($subscriptionPayment as $parcela)
+                                        <tr class="hover:bg-gray-200">
+                                            <td class="border">{{ $i }}</td>
+                                            <td class="border">{{ date('d/m/Y', strtotime($parcela->due_date)) }}
+                                            </td>
+                                            <td class="border">
+                                                {{ empty($parcela->payday) ? '--/--/--' : date('d/m/Y', strtotime($parcela->payday)) }}
+                                            </td>
+                                            <td class="border"> R$ {{ $parcela->monthly_value }}</td>
+                                            <td class="border">
+                                                @if ($parcela->status == 'expired')
+                                                    <span class="text-theme-6">Vencido</span>
+                                                @endif
+                                                @if ($parcela->status == 'payable')
+                                                    <span>Em aberto</span>
+                                                @endif
+                                                @if ($parcela->status == 'paid')
+                                                    <span class="text-theme-9">Pago</span>
+                                                @endif
+                                            </td>
+                                            <td class="border">
+                                                <a class="edit flex items-center mr-3 float-left"
+                                                    href="{{ route('informacao-parcela', ['subscriptionPayment' => $parcela->id]) }}">
+                                                    <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Editar
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        @php
+                                            $i++;
+                                        @endphp
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -231,6 +285,20 @@
                             <input id="numparcelas" type="text" name="numparcelas" class="form-control mt-2"
                                 placeholder="Número de parcelas" value="">
                         </div>
+                        <div class="w-full px-3 pt-5 pb-5 mb-6 md:mb-0">
+                            <label for="dataInicio" class="form-label">
+                                <strong>Qual a data de início do
+                                    parcelamento?</strong></label>
+                            <div class="relative mx-auto">
+                                <div
+                                    class="absolute rounded-l w-10 h-full flex items-center justify-center bg-gray-100 border
+                                                                                text-gray-600 dark:bg-dark-1 dark:border-dark-4">
+                                    <i data-feather="calendar" class="w-4 h-4"></i>
+                                </div>
+                                <input type="text" autocomplete="off" class="data form-control pl-12"
+                                    id="dataInicioParcelamento" data-single-mode="true">
+                            </div>
+                        </div>
                     </div>
                     <div class="px-5 pb-8 text-center">
                         <button type="button" data-dismiss="modal" class="btn btn-secondary w-24">Cancelar</button>
@@ -240,7 +308,70 @@
                 </div>
             </div>
         </div>
-    </div> <!-- END: Modal Content -->
+    </div>
+    <!-- END: Modal Content -->
+    <!-- BEGIN: Modal Content -->
+    <div id="excluirAssinatura" class="modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="{{ route('excluir-assinatura', ['subscription' => $subscription->id]) }}" method="POST">
+                    <div class="modal-body p-0">
+                        <div class="p-5 text-center"> <i data-feather="x-circle"
+                                class="w-16 h-16 text-theme-6 mx-auto mt-3"></i>
+                            <div class="text-3xl mt-5">Você realmente quer excluir esta assinatura?</div>
+                            <div class="text-gray-600 mt-2">Todas as parcelas referente a esta assinatura, também serão
+                                excluidas.
+                                <br><br>Esse processo não poderá ser desfeito.
+                            </div>
+                        </div>
+                        <div class="px-5 pb-8 text-center">
+                            <button type="button" data-dismiss="modal"
+                                class="btn btn-outline-secondary w-24 dark:border-dark-5 dark:text-gray-300 mr-1">Cancelar</button>
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger w-24">Excluir</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @if (session()->get('message') == 'subscriptionPayment_created')
+        <!-- END: Modal Toggle -->
+        <!-- BEGIN: Modal Content -->
+        <div id="modalInfo" class="modal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="p-5 text-center"> <i data-feather="check-circle"
+                            class="w-16 h-16 text-theme-9 mx-auto mt-3"></i>
+                        <div class="text-3xl mt-5">Bom trabalho!</div>
+                        <div class="text-gray-600 mt-2">A parcela foi criada com sucesso!</div>
+                    </div>
+                    <div class="px-5 pb-8 text-center"> <button type="button" data-dismiss="modal"
+                            class="btn btn-primary w-24">Ok</button> </div>
+                </div>
+            </div>
+        </div> <!-- END: Modal Content -->
+
+    @endif
+    @if (session()->get('message') == 'subscriptionPayment_deleted')
+        <!-- END: Modal Toggle -->
+        <!-- BEGIN: Modal Content -->
+        <div id="modalInfo" class="modal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="p-5 text-center"> <i data-feather="check-circle"
+                            class="w-16 h-16 text-theme-9 mx-auto mt-3"></i>
+                        <div class="text-3xl mt-5">Bom trabalho!</div>
+                        <div class="text-gray-600 mt-2">A parcela foi excluida com sucesso!</div>
+                    </div>
+                    <div class="px-5 pb-8 text-center"> <button type="button" data-dismiss="modal"
+                            class="btn btn-primary w-24">Ok</button> </div>
+                </div>
+            </div>
+        </div> <!-- END: Modal Content -->
+
+    @endif
     @if (session()->get('message') == 'subscription_updated')
         <!-- END: Modal Toggle -->
         <!-- BEGIN: Modal Content -->
@@ -270,30 +401,62 @@
     @endif
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        var url = "http://localhost/unipublica-site/public/";
+        var url = 'http://localhost/unipublica-site/public/';
 
         function fazerParcelamento(id) {
 
             var numparcelas = cash('#numparcelas').val();
-
+            var dataInicioParcelamento = cash('#dataInicioParcelamento').val();
             urlFinal = url + 'painel/alunos/assinatura/parcelar/' + id;
             axios.post(urlFinal, {
                     data: {
-                        'numparcelas': numparcelas
+                        'numparcelas': numparcelas,
+                        'dataInicioParcelamento': dataInicioParcelamento
                     }
                 })
                 .then(function(response) {
-                    console.log(response.data);
+                    parcelas = response.data;
+                    var i;
+                    var tabelaParcelamento;
+                    cash('.tabelaParcelamento').html('');
+                    for (i = 0; i < numparcelas; i++) {
+                        var id = parcelas[i].id;
+                        var dataVencimento = parcelas[i].dataVencimento;
+                        var valorParcela = parcelas[i].valor;
+                        var statusParcela = parcelas[i].status;
+                        dataVencimento = dataVencimento.split('-').reverse().join('/');
+
+                        if (statusParcela == 'payable') {
+                            statusParcela = '<span>Em aberto</span>';
+                        }
+
+                        tabelaParcelamento = '<tr class="hover:bg-gray-200">' +
+                            '<td class="border">' + (i + 1) + '</a></td> ' +
+                            '<td class="border">' + dataVencimento + '</td> ' +
+                            '<td class="border">--/--/--</td> ' +
+                            '<td class="border"> R$' + valorParcela + '</td>' +
+                            '<td class="border">' + statusParcela + '</td>' +
+                            '<td>' +
+                            '<a class="edit flex items-center mr-3" href="' + url + 'painel/alunos/parcelas/' + id +
+                            '">' +
+                            '<i data-feather="check-square" class="w-4 h-4 mr-1"></i> Editar ' +
+                            '</a>' +
+                            '</td>' +
+                            '</tr>'
+                        cash('.tabelaParcelamento').append(tabelaParcelamento);
+                        feather.replace({
+                            "stroke-width": 1.5,
+                        });
+                    }
                 })
                 .catch(function(error) {
-                    console.log('Erro: ' + error);
+                    console.log(error);
                 });
         }
 
         function abreParcelamento() {
             cash('#modalParcelamento').modal('show');
         }
-
 
         cash(".data").each(function() {
             let options = {
@@ -320,6 +483,9 @@
                 element: this,
                 ...options,
             });
+
+
+
         });
     </script>
 @endpush

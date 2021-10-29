@@ -36,7 +36,7 @@ class Panel extends Model
 
     public function video_lesson()
     {
-         return $this->belongsToMany(VideoLesson::class, 'video_lessons_panels', 'panel_id', 'video_lesson_id');
+        return $this->belongsToMany(VideoLesson::class, 'video_lessons_panels', 'panel_id', 'video_lesson_id');
     }
 
     public function material()
@@ -51,8 +51,6 @@ class Panel extends Model
 
     public function teachers()
     {
-        return $this->belongsToMany(Teacher::class, 'teacher_panels', 'panel_id' , 'teacher_id');
+        return $this->belongsToMany(Teacher::class, 'teacher_panels', 'panel_id', 'teacher_id');
     }
-
-
 }

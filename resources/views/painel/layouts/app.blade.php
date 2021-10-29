@@ -24,7 +24,8 @@
     <div class="mobile-menu md:hidden">
         <div class="mobile-menu-bar">
             <a href="" class="flex mr-auto">
-                <img alt="Rubick Tailwind HTML Admin Template" class="w-6" src="{{ url('dist/images/logo.svg') }}">
+                <img alt="Rubick Tailwind HTML Admin Template" class="w-6"
+                    src="{{ url('dist/images/logo.svg') }}">
             </a>
             <a href="javascript:;" id="mobile-menu-toggler"> <i data-feather="bar-chart-2"
                     class="w-8 h-8 text-white transform -rotate-90"></i> </a>
@@ -74,14 +75,12 @@
         <div class="top-bar-boxed flex items-center">
             <!-- BEGIN: Logo -->
             <a href="" class="-intro-x hidden md:flex">
-                <img alt="Rubick Tailwind HTML Admin Template" class="w-6" src="{{ url('dist/images/logo.svg') }}">
-                <span class="text-white text-lg ml-3"> Ru<span class="font-medium">bick</span> </span>
+                <span class="text-white text-lg font-light ml-3"> Painel <span class="font-bold">UNYFLEX</span>
+                </span>
             </a>
             <!-- END: Logo -->
             <!-- BEGIN: Breadcrumb -->
-            <div class="-intro-x breadcrumb breadcrumb--light mr-auto"> <a href="">Painel Unyflex</a> <i
-                    data-feather="chevron-right" class="breadcrumb__icon"></i> <a href=""
-                    class="breadcrumb--active">Dashboard</a> </div>
+            <div class="-intro-x breadcrumb breadcrumb--light mr-auto"> </div>
             <!-- END: Breadcrumb -->
             <!-- BEGIN: Search -->
             <div class="intro-x relative mr-3 sm:mr-6">
@@ -133,7 +132,7 @@
                         </div>
                         <div class="p-2 border-t border-theme-27 dark:border-dark-3">
                             <a href=""
-                                class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md">
+                                class="flex items-center p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md">
                                 <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Logout </a>
                         </div>
                     </div>
@@ -162,7 +161,7 @@
             </li>
             <li>
                 <a href="{{ route('painel-cursos') }}"
-                    class="top-menu {{ request()->is('painel/cursos*') ? 'top-menu--active' : '' }}">
+                    class="top-menu {{ request()->is('painel/cursos*') ? 'top-menu--active' : (request()->is('painel/turmas*') ? 'top-menu--active' : '') }} ">
                     <div class="top-menu__icon"> <i data-feather="book"></i> </div>
                     <div class="top-menu__title"> Cursos <i data-feather="chevron-down" class="top-menu__sub-icon"></i>
                     </div>

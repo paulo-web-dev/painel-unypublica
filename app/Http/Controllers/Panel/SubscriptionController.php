@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Panel;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Subscription;
+use App\Models\SubscriptionPayment;
 use App\Models\Student;
 
 class SubscriptionController extends Controller
@@ -21,10 +22,12 @@ class SubscriptionController extends Controller
     public function infoAssinatura(Subscription $subscription)
     {
         $subscription = Subscription::where('id', $subscription->id)->with('student')->first();
+        $subscriptionPayment = SubscriptionPayment::where('subscription_id', $subscription->id)->orderBy('due_date', 'ASC')->get();
 
         return view('painel.subscription-info', [
             'page_name' => 'Painel Unyflex - Informações da Assinatura',
-            'subscription' => $subscription
+            'subscription' => $subscription,
+            'subscriptionPayment' => $subscriptionPayment
         ]);
     }
 
@@ -53,16 +56,6 @@ class SubscriptionController extends Controller
 
     public function updAssinatura(Subscription $subscription, Request $request)
     {
-        // if ($request->dataInicio != null) {
-        //     $request->dataInicio = implode("-", array_reverse(explode("/", $request->dataInicio)));
-        // }
-        // if ($request->dataTermino != null) {
-        //     $request->dataTermino = implode("-", array_reverse(explode("/", $request->dataTermino)));
-        // }
-        // if ($request->dataPagamento != null) {
-        //     $request->dataPagamento = implode("-", array_reverse(explode("/", $request->dataPagamento)));
-        // }
-
         $subscription->student_id = $request->idAluno;
         $subscription->value = $request->valor;
         $subscription->discount = $request->desconto;
@@ -85,6 +78,11 @@ class SubscriptionController extends Controller
     public function parcelarAssinatura(Subscription $subscription, Request $request)
     {
 
+        $subscriptionPayment = SubscriptionPayment::where('subscription_id', $subscription->id)->get();
+        foreach ($subscriptionPayment as $parcela) {
+            $parcela->delete();
+        }
+
         $dataInicioParcelamento = $request->data['dataInicioParcelamento'];
         $dataInicioParcelamento = explode('-', $dataInicioParcelamento);
 
@@ -94,6 +92,7 @@ class SubscriptionController extends Controller
 
         $numParcelas = $request->data['numparcelas'];
         $valorTotal = $subscription->final_value;
+
         $valorMensal = $valorTotal / $numParcelas;
         $valorMensal = number_format($valorMensal, 2);
 
@@ -114,12 +113,33 @@ class SubscriptionController extends Controller
             $dataPagamento = $anoInicio . '-' . $mesInicio . '-' . $diaInicio;
             $dadosMes['dataVencimento'] = $dataPagamento;
             $dadosMes['valor'] = $valorMensal;
-            $dadosMes['status'] = 'Em aberto';
+            $dadosMes['status'] = 'payable';
+
+            $subscriptionPayment = new SubscriptionPayment();
+            $subscriptionPayment->subscription_id = $subscription->id;
+            $subscriptionPayment->monthly_value = $dadosMes['valor'];
+            $subscriptionPayment->due_date = $dadosMes['dataVencimento'];
+            $subscriptionPayment->status = $dadosMes['status'];
+            $subscriptionPayment->save();
+            $dadosMes['id'] = $subscriptionPayment->id;
 
             array_push($datasPagamento, $dadosMes);
             $mesInicio++;
         }
+        if ($subscriptionPayment->save()) {
+            return $datasPagamento;
+        } else {
+            return 'Não foi possível criar o parcelamento';
+        }
+    }
 
-        return $datasPagamento;
+    public function destroyAssinatura(Subscription $subscription)
+    {
+        $student = $subscription->student_id;
+        if ($subscription->delete()) {
+            return redirect()->route('informacao-aluno', ['id' => $student])->with('message', 'subscription_deleted');
+        } else {
+            return redirect()->route('informacao-assinatura', ['subscription' => $subscription->id])->with('message', 'subscription_delete_error');
+        }
     }
 }

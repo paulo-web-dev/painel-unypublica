@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Models\Student;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -25,17 +26,20 @@ class StudentController extends Controller
     public function infoAluno($id)
     {
         $student = Student::where('id', $id)->with('enrollment')->first();
+        $subscription = Subscription::where('student_id', $id)->get();
+
 
         return view('painel.student-info', [
             'page_name' => 'Painel Unyflex - Informações do Aluno',
-            'student' => $student
+            'student' => $student,
+            'subscription' => $subscription
         ]);
     }
 
     public function formAluno()
     {
         return view('painel.form-student', [
-            'page_name' => 'Painel Unyflex - Adicionar do Aluno'
+            'page_name' => 'Painel Unyflex - Adicionar Aluno'
         ]);
     }
 

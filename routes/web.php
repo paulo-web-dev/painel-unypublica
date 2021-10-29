@@ -55,9 +55,52 @@ Route::get('/painel/alunos/assinatura/adicionar/{student}', 'Panel\SubscriptionC
 Route::post('/painel/alunos/assinatura/cadastrar', 'Panel\SubscriptionController@cadAssinatura')->name('cadastrar-assinatura');
 Route::put('/painel/alunos/assinatura/atualiza/{subscription}', 'Panel\SubscriptionController@updAssinatura')->name('atualiza-assinatura');
 Route::post('/painel/alunos/assinatura/parcelar/{subscription}', 'Panel\SubscriptionController@parcelarAssinatura')->name('parcelar-assinatura');
+Route::delete('/painel/alunos/assinatura/excluir/{subscription}', 'Panel\SubscriptionController@destroyAssinatura')->name('excluir-assinatura');
 Route::get('/painel/alunos/assinatura/{subscription}', 'Panel\SubscriptionController@infoAssinatura')->name('informacao-assinatura');
 
-Route::get('/painel/cursos', 'Panel\DashboardController@show')->name('painel-cursos');
+//rotas de informações pertinantes ao parcelamento do pagameanto das assinaturas
+Route::get('/painel/alunos/parcelas/adicionar/{subscription}', 'Panel\SubscriptionPaymentController@formParcela')->name('adicionar-parcela');
+Route::post('/painel/alunos/parcelas/cadastrar', 'Panel\SubscriptionPaymentController@cadParcela')->name('cadastrar-parcela');
+Route::put('/painel/alunos/parcelas/atualiza/{subscriptionPayment}', 'Panel\SubscriptionPaymentController@updParcela')->name('atualiza-parcela');
+Route::delete('/painel/alunos/parcelas/excluir/{subscriptionPayment}', 'Panel\SubscriptionPaymentController@destroyParcela')->name('excluir-parcela');
+Route::get('/painel/alunos/parcelas/{subscriptionPayment}', 'Panel\SubscriptionPaymentController@infoParcela')->name('informacao-parcela');
+
+//rotas de informações pertinantes aos professores
+Route::get('/painel/professores', 'Panel\TeacherController@show')->name('painel-professores');
+Route::get('/painel/professores/adicionar', 'Panel\TeacherController@formProfessor')->name('adicionar-professor');
+Route::post('/painel/professores/cadastrar', 'Panel\TeacherController@cadProfessor')->name('cadastrar-professor');
+Route::put('/painel/professores/atualiza/{teacher}', 'Panel\TeacherController@updProfessor')->name('atualiza-professor');
+Route::delete('/painel/professores/excluir/{teacher}', 'Panel\TeacherController@destroyProfessor')->name('excluir-professor');
+Route::get('/painel/professores/{teacher}', 'Panel\TeacherController@infoProfessor')->name('informacao-professor');
+
+//rotas de informações pertinantes aos materiais
+Route::get('/painel/materiais', 'Panel\MaterialController@show')->name('painel-materiais');
+Route::get('/painel/materiais/adicionar', 'Panel\MaterialController@formMaterial')->name('adicionar-material');
+Route::post('/painel/materiais/cadastrar', 'Panel\MaterialController@cadMaterial')->name('cadastrar-material');
+Route::post('/painel/materiais/inserir', 'Panel\MaterialController@inserirMaterial')->name('inserir-material');
+Route::put('/painel/materiais/atualizar/{material}', 'Panel\MaterialController@updMaterial')->name('atualizar-material');
+Route::match(['get', 'post'], '/painel/materiais/pesquisa', 'Panel\MaterialController@search')->name('filtra-materiais');
+Route::delete('/painel/materiais/excluir/{material}', 'Panel\MaterialController@destroyMaterial')->name('excluir-material');
+Route::get('/painel/materiais/{material}', 'Panel\MaterialController@infoMaterial')->name('informacao-material');
+
+//rotas de informações pertinentes aos cursos
+Route::get('/painel/cursos', 'Panel\CourseController@show')->name('painel-cursos');
+Route::get('/painel/cursos/adicionar', 'Panel\CourseController@formCurso')->name('adicionar-curso');
+Route::post('/painel/cursos/cadastrar', 'Panel\CourseController@cadCurso')->name('cadastrar-curso');
+Route::put('/painel/cursos/atualizar/{course}', 'Panel\CourseController@updCurso')->name('atualizar-curso');
+Route::match(['get', 'post'], '/painel/cursos/pesquisa', 'Panel\CourseController@search')->name('filtra-cursos');
+Route::delete('/painel/cursos/excluir/{course}', 'Panel\CourseController@destroyCurso')->name('excluir-curso');
+Route::get('/painel/cursos/{course}', 'Panel\CourseController@infoCurso')->name('informacao-curso');
+
+//rotas de informações pertinentes as turmas
+Route::get('/painel/turmas/{classes}', 'Panel\ClassController@infoTurma')->name('informacao-turma');
+Route::get('/painel/turmas/excluir/{classes}', 'Panel\ClassController@destroyTurma')->name('excluir-turma');
+Route::put('/painel/turmas/atualizar/{classes}', 'Panel\ClassController@updTurma')->name('atualizar-turma');
+
+//rotas de informações pertinentes aos paineis
+Route::put('/painel/paineis/atualizar/{panel}', 'Panel\PanelController@updPainel')->name('atualizar-painel');
+Route::delete('/painel/painel/excluir/{panel}', 'Panel\PanelController@destroyPainel')->name('excluir-painel');
+
+
+//Route::get('/painel/cursos', 'Panel\DashboardController@show')->name('painel-cursos');
 Route::get('/painel/tutoria', 'Panel\DashboardController@show')->name('painel-tutoria');
-Route::get('/painel/professores', 'Panel\DashboardController@show')->name('painel-professores');
-Route::get('/painel/materiais', 'Panel\DashboardController@show')->name('painel-materiais');

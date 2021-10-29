@@ -30,6 +30,6 @@ class Material extends Model
 
     public function panels()
     {
-        return $this->belongsToMany(Material::class, 'material_panels', 'material_id','panel_id');
+        return $this->belongsToMany(Panel::class, 'material_panels', 'material_id', 'panel_id')->with('classes');
     }
 }

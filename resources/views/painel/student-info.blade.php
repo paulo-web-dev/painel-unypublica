@@ -234,7 +234,7 @@
                                                 <a href="{{ route('informacao-matricula', ['enrollment' => $enrollment->id]) }}"
                                                     class="font-bold">{{ $enrollment->classes->title }} -
                                                     {{ $enrollment->classes->subtitle }}
-                                                    ({{ $enrollment->classes->id }})
+                                                    (# {{ $enrollment->classes->id }})
 
                                                     <div class="text-gray-600"># {{ $enrollment->id }}
                                                         <span class="ml-10">Data:
@@ -257,9 +257,15 @@
                                                 <a href="{{ route('informacao-matricula', ['enrollment' => $enrollment->id]) }}"
                                                     class="font-bold">{{ $enrollment->classes->title }} -
                                                     {{ $enrollment->classes->subtitle }}
-                                                    ({{ $enrollment->classes->id }})
+                                                    (# {{ $enrollment->classes->id }})
                                                 </a>
-                                                <div class="text-gray-600"># {{ $enrollment->id }}</div>
+                                                <div class="text-gray-600"># {{ $enrollment->id }}
+                                                    <span class="ml-10"><strong>Data de Vigência: </strong>
+                                                        {{ date('d/m/Y', strtotime($enrollment->start_date)) }}
+                                                        à
+                                                        {{ date('d/m/Y', strtotime($enrollment->end_date)) }}
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     @endif
@@ -267,18 +273,50 @@
                             </div>
                             <div id="assinatura" class="tab-pane" role="tabpanel"
                                 aria-labelledby="top-products-assinatura-tab">
-                                <div class="flex items-center">
-                                    <div class="border-l-2 border-theme-1 pl-4">
-                                        <a href="" class="font-medium">Assinatura</a>
-                                        <div class="text-gray-600">10:00 AM</div>
+                                @foreach ($subscription as $itemSubscription)
+
+                                    <div class="flex items-center">
+                                        <div class="border-l-2 border-theme-1 pl-4">
+                                            <a href="{{ route('informacao-assinatura', ['subscription' => $itemSubscription->id]) }}"
+                                                class="font-bold">Assinatura de
+                                                {{ date('d/m/Y', strtotime($itemSubscription->start_date)) }} até
+                                                {{ date('d/m/Y', strtotime($itemSubscription->start_date)) }}
+                                            </a>
+                                            <div class="text-gray-600">
+                                                <span><strong>#</strong> {{ $itemSubscription->id }}</span>
+                                                <span class="ml-5"><strong>Status: </strong>
+                                                    @if ($itemSubscription->status == 'not_checked')
+                                                        Não conferido
+                                                    @endif
+                                                    @if ($itemSubscription->status == 'checked')
+                                                        Conferido
+                                                    @endif
+                                                    @if ($itemSubscription->status == 'scheduled_billing')
+                                                        Pagamento agendado
+                                                    @endif
+                                                    @if ($itemSubscription->status == 'bill_sent')
+                                                        Pagamento solicitado
+                                                    @endif
+                                                    @if ($itemSubscription->status == 'identified_payment')
+                                                        Pagamento identificado
+                                                    @endif
+                                                    @if ($itemSubscription->status == 'commercial_pending')
+                                                        Pendência Comercial
+                                                    @endif
+                                                    @if ($itemSubscription->status == 'financial_pending')
+                                                        Pendência Financeira
+                                                    @endif
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- END: Products -->
-                <!-- BEGIN: Statistics -->
+                {{-- <!-- BEGIN: Statistics -->
                 <div class="intro-y box col-span-12 xxl:col-span-6">
                     <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
                         <h2 class="font-medium text-base mr-auto">
@@ -338,7 +376,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- END: General Statistics -->
+                <!-- END: General Statistics --> --}}
 
                 <!-- BEGIN:  -->
                 <div class="intro-y box col-span-12 xxl:col-span-6">
@@ -459,6 +497,25 @@
                                 class="w-16 h-16 text-theme-9 mx-auto mt-3"></i>
                             <div class="text-3xl mt-5">Bom trabalho!</div>
                             <div class="text-gray-600 mt-2">A assinatura foi criada com sucesso!</div>
+                        </div>
+                        <div class="px-5 pb-8 text-center"> <button type="button" data-dismiss="modal"
+                                class="btn btn-primary w-24">Ok</button> </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- END: Modal Content -->
+    @endif
+    @if (session()->get('message') == 'subscription_deleted')
+        <!-- END: Modal Toggle -->
+        <!-- BEGIN: Modal Content -->
+        <div id="modalInfo" class="modal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body p-0">
+                        <div class="p-5 text-center"> <i data-feather="check-circle"
+                                class="w-16 h-16 text-theme-9 mx-auto mt-3"></i>
+                            <div class="text-3xl mt-5">Bom trabalho!</div>
+                            <div class="text-gray-600 mt-2">A assinatura foi excluída com sucesso!</div>
                         </div>
                         <div class="px-5 pb-8 text-center"> <button type="button" data-dismiss="modal"
                                 class="btn btn-primary w-24">Ok</button> </div>
