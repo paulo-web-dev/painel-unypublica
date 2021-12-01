@@ -97,6 +97,12 @@ Route::get('/painel/turmas/{classes}', 'Panel\ClassController@infoTurma')->name(
 Route::get('/painel/turmas/excluir/{classes}', 'Panel\ClassController@destroyTurma')->name('excluir-turma');
 Route::put('/painel/turmas/atualizar/{classes}', 'Panel\ClassController@updTurma')->name('atualizar-turma');
 
+//rotas de informações pertinentes ao financeiro
+Route::get('/painel/financeiro' , 'Panel\FinanceController@show')->name('painel-financeiro');
+Route::get('/painel/financeiro/despesas/adicionar' , 'Panel\FinanceController@formDespesas')->name('adicionar-despesas');
+Route::post('/painel/financeiro/despesas/cadastrar', 'Panel\FinanceController@cadDespesa')->name('cadastrar-despesa');
+Route::delete('/painel/financeiro/despesas/excluir/{despesa}', 'Panel\FinanceController@destroyDespesa')->name('excluir-despesa');
+Route::get('/painel/financeiro/fluxo-de-caixa/adicionar' , 'Panel\FinanceController@formFluxo')->name('adicionar-fluxo');
 //rotas de informações pertinentes aos paineis
 Route::put('/painel/paineis/atualizar/{panel}', 'Panel\PanelController@updPainel')->name('atualizar-painel');
 Route::delete('/painel/painel/excluir/{panel}', 'Panel\PanelController@destroyPainel')->name('excluir-painel');

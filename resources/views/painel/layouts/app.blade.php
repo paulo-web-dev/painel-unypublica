@@ -160,6 +160,13 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('painel-financeiro') }}"
+                    class="top-menu {{ request()->is('painel/financeiro*') ? 'top-menu--active' : '' }}">
+                    <div class="top-menu__icon"> <i data-feather="dollar-sign"></i> </div>
+                    <div class="top-menu__title"> Financeiro</div>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('painel-cursos') }}"
                     class="top-menu {{ request()->is('painel/cursos*') ? 'top-menu--active' : (request()->is('painel/turmas*') ? 'top-menu--active' : '') }} ">
                     <div class="top-menu__icon"> <i data-feather="book"></i> </div>
