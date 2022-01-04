@@ -103,7 +103,9 @@ Route::get('/painel/financeiro' , 'Panel\FinanceController@show')->name('painel-
 Route::get('/painel/financeiro/despesas/adicionar' , 'Panel\FinanceController@formDespesas')->name('adicionar-despesas');
 Route::post('/painel/financeiro/despesas/cadastrar', 'Panel\FinanceController@cadDespesa')->name('cadastrar-despesa');
 Route::delete('/painel/financeiro/despesas/excluir/{despesa}', 'Panel\FinanceController@destroyDespesa')->name('excluir-despesa');
-Route::get('/painel/financeiro/fluxo-de-caixa/adicionar' , 'Panel\FinanceController@formFluxo')->name('adicionar-fluxo');
+Route::get('/painel/financeiro/fluxo-de-caixa/filtrar' , 'Panel\FinanceController@formFluxo')->name('adicionar-fluxo');
+Route::get('/painel/financeiro/fluxo-de-caixa/listar' , 'Panel\FinanceController@fluxo')->name('fluxo');
+Route::post('/painel/financeiro/fluxo-de-caixa/cadastrar', 'Panel\FinanceController@cadFluxo')->name('cadastrar-fluxo');
 //rotas de informações pertinentes aos paineis
 Route::put('/painel/paineis/atualizar/{panel}', 'Panel\PanelController@updPainel')->name('atualizar-painel');
 Route::delete('/painel/painel/excluir/{panel}', 'Panel\PanelController@destroyPainel')->name('excluir-painel');
