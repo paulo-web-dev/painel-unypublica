@@ -10,7 +10,7 @@
             class="w-4 h-4 mr-2"></i> Adicionar Despesas
     </a>
     <a href="{{ route('adicionar-fluxo') }}" class="btn btn-primary w-49 mr-2 mt-5 mb-2"> <i data-feather="plus"
-        class="w-4 h-4 mr-2"></i> Adicionar Fluxo de Caixa
+        class="w-4 h-4 mr-2"></i> Ver Fluxos de Caixa
 </a>
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">

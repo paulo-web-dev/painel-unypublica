@@ -1,62 +1,12 @@
 @extends('painel.layouts.app')
 
 @section('content')
-    <form action="{{ route('cadastrar-despesa') }}" enctype="multipart/form-data" data-single="true" method="post">
+   
         <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
-            <div class="col-span-12 lg:col-span-8">
-                <!-- BEGIN: Personal Information -->
-                <div class="intro-y box mt-5" >
-                    <div class="flex items-center p-5 border-b border-gray-200 dark:border-dark-5">
-                        <h2 class="font-medium text-base mr-auto">
-                            Informações Do Fluxo De Caixa
-                        </h2>
-                    </div>
-                    <div class="p-5">
-                        @foreach ($errors->all() as $error)
-                            <div class="alert alert-danger alert-dismissible show flex items-center mb-2" role="alert">
-                                <i data-feather="alert-octagon" class="w-6 h-6 mr-2"></i> {{ $error }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                                    <i data-feather="x" class="w-4 h-4"></i>
-                                </button>
-                            </div>
-                        @endforeach
-
-                            @csrf
-
-                            <label for="mes" class="form-label"><strong>Mês</strong></label>
-
-                                <select data-placeholder="Selecione o status do curso" name="mes"
-                                    class="tom-select w-full">
-                                    <option value="Janeiro">Janeiro</option>
-                                    <option value="Fevereiro">Fevereiro</option>
-                                    <option value="Março">Março</option>
-                                    <option value="Abril">Abril</option>
-                                    <option value="Maio">Maio</option>
-                                    <option value="Junho">Junho</option>
-                                    <option value="Julho">Julho</option>
-                                    <option value="Agosto">Agosto</option>
-                                    <option value="Setembro">Setembro</option>
-                                    <option value="Outrubro">Outrubro</option>
-                                    <option value="Novembro">Novembro</option>
-                                    <option value="Dezembro">Dezembro</option>
-                                </select>
-
-                                <label for="ano" class="form-label"><strong>Ano</strong></label>
-
-                                <select data-placeholder="Selecione o status do curso" name="mes"
-                                    class="tom-select w-full">
-                                    <option value="2021">2021</option>
-                                    <option value="2022">2022</option>
-                                    <option value="2023">2023</option>
-                                </select>
-                        </div>
-
-                </div>
-            </div>
-                <div class="flex justify-end mt-4">
-                    <button type="submit" class="btn btn-primary w-40 mr-auto">Filtrar </button>
-                </div>
-            </div>
+          <a href="/painel/financeiro/fluxo-de-caixa/listar"> 
+            <button style="width: 1300%;" type="submit" class="btn btn-primary w-40 mr-auto">Adicionar Fluxo de Caixa </button>
+          </a>     
+        </div>
              <!-- BEGIN: Data List -->
  <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
     <table class="table table-report -mt-2">
@@ -96,13 +46,13 @@
                             aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <form action="{{ route('excluir-curso', ['course' => $flow->id]) }}"
+                                    <form action="{{ route('excluir-fluxo', ['fluxo' => $flow->id]) }}"
                                         method="POST">
                                         <div class="modal-body p-0">
                                             <div class="p-5 text-center"> <i data-feather="x-circle"
                                                     class="w-16 h-16 text-theme-6 mx-auto mt-3"></i>
                                                 <div class="text-3xl mt-5">Você realmente quer excluir este
-                                                    curso?</div>
+                                                    fluxo de caixa?</div>
                                                 <div class="text-gray-600 mt-2">
                                                     Esse processo não poderá ser desfeito.
                                                 </div>
