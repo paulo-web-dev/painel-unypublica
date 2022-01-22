@@ -93,7 +93,18 @@ Route::match(['get', 'post'], '/painel/cursos/pesquisa', 'Panel\CourseController
 Route::delete('/painel/cursos/excluir/{course}', 'Panel\CourseController@destroyCurso')->name('excluir-curso');
 Route::get('/painel/cursos/{course}', 'Panel\CourseController@infoCurso')->name('informacao-curso');
 
+//rotas de informações pertinentes as categoria
+Route::get('/painel/categorias', 'Panel\CategoryController@show')->name('painel-categorias');
+Route::get('/painel/categorias/adicionar', 'Panel\CategoryController@formCategoria')->name('adicionar-categoria');
+Route::post('/painel/categorias/cadastrar', 'Panel\CategoryController@cadCategoria')->name('cadastrar-categoria');
+Route::put('/painel/categorias/atualizar/{category}', 'Panel\CategoryController@updCategoria')->name('atualizar-categoria');
+Route::get('/painel/categorias/{category}', 'Panel\CategoryController@infoCategoria')->name('informacao-categoria');
+Route::delete('/painel/categorias/excluir/{category}', 'Panel\CategoryController@destroyCategoria')->name('excluir-categoria');
+
+
+
 //rotas de informações pertinentes as turmas
+Route::get('/painel/turmas/adicionar', 'Panel\ClassController@formTurma')->name('adicionar-turma');
 Route::get('/painel/turmas/{classes}', 'Panel\ClassController@infoTurma')->name('informacao-turma');
 Route::get('/painel/turmas/excluir/{classes}', 'Panel\ClassController@destroyTurma')->name('excluir-turma');
 Route::put('/painel/turmas/atualizar/{classes}', 'Panel\ClassController@updTurma')->name('atualizar-turma');
