@@ -72,8 +72,10 @@ class CourseController extends Controller
         $course->title = $request->nome;
         $course->status = $request->status;
         if ($course->save()) {
+
             //adiciona novas categorias selecionadas
             foreach ($request->categorias as $categoria) {
+                //dd($request->categorias);
                 $categoryCourse = new CategoryCourse();
                 $categoryCourse->course_id = $course->id;
                 $categoryCourse->category_id = $categoria;

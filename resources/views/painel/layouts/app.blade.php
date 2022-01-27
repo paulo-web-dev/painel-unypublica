@@ -19,58 +19,169 @@
 </head>
 <!-- END: Head -->
 
-<body class="main">
-    <!-- BEGIN: Mobile Menu -->
-    <div class="mobile-menu md:hidden">
-        <div class="mobile-menu-bar">
-            <a href="" class="flex mr-auto">
-                <img alt="Rubick Tailwind HTML Admin Template" class="w-6"
-                    src="{{ url('dist/images/logo.svg') }}">
-            </a>
-            <a href="javascript:;" id="mobile-menu-toggler"> <i data-feather="bar-chart-2"
-                    class="w-8 h-8 text-white transform -rotate-90"></i> </a>
+    <!-- END: Head -->
+    <body class="py-5">
+        <!-- BEGIN: Mobile Menu -->
+        <div class="mobile-menu md:hidden">
+            <div class="mobile-menu-bar">
+
+                <a href="javascript:;" id="mobile-menu-toggler"> <i data-feather="bar-chart-2" class="w-8 h-8 text-white transform -rotate-90"></i> </a>
+            </div>
+            <ul class="border-t border-white/[0.08] py-5 hidden">
+               
+                    <ul class="">
+                        <li>
+                            <a href="side-menu-light-crud-data-list.html" class="menu">
+                                <div class="menu__icon"> <i data-feather="activity"></i> </div>
+                                <div class="menu__title"> Data List </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="side-menu-light-crud-form.html" class="menu">
+                                <div class="menu__icon"> <i data-feather="activity"></i> </div>
+                                <div class="menu__title"> Form </div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:;" class="menu">
+                        <div class="menu__icon"> <i data-feather="users"></i> </div>
+                        <div class="menu__title"> Users <i data-feather="chevron-down" class="menu__sub-icon "></i> </div>
+                    </a>
+                    <ul class="">
+                        <li>
+                            <a href="side-menu-light-users-layout-1.html" class="menu">
+                                <div class="menu__icon"> <i data-feather="activity"></i> </div>
+                                <div class="menu__title"> Layout 1 </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="side-menu-light-users-layout-2.html" class="menu">
+                                <div class="menu__icon"> <i data-feather="activity"></i> </div>
+                                <div class="menu__title"> Layout 2 </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="side-menu-light-users-layout-3.html" class="menu">
+                                <div class="menu__icon"> <i data-feather="activity"></i> </div>
+                                <div class="menu__title"> Layout 3 </div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:;" class="menu">
+                        <div class="menu__icon"> <i data-feather="trello"></i> </div>
+                        <div class="menu__title"> Profile <i data-feather="chevron-down" class="menu__sub-icon "></i> </div>
+                    </a>
+                    <ul class="">
+                        <li>
+                            <a href="side-menu-light-profile-overview-1.html" class="menu">
+                                <div class="menu__icon"> <i data-feather="activity"></i> </div>
+                                <div class="menu__title"> Overview 1 </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="side-menu-light-profile-overview-2.html" class="menu">
+                                <div class="menu__icon"> <i data-feather="activity"></i> </div>
+                                <div class="menu__title"> Overview 2 </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="side-menu-light-profile-overview-3.html" class="menu">
+                                <div class="menu__icon"> <i data-feather="activity"></i> </div>
+                                <div class="menu__title"> Overview 3 </div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:;" class="menu">
+                        <div class="menu__icon"> <i data-feather="layout"></i> </div>
+                        <div class="menu__title"> Pages <i data-feather="chevron-down" class="menu__sub-icon "></i> </div>
+                    </a>
+                    <ul class="">
+                        <li>
+                            <a href="javascript:;" class="menu">
+                                <div class="menu__icon"> <i data-feather="activity"></i> </div>
+                                <div class="menu__title"> Wizards <i data-feather="chevron-down" class="menu__sub-icon "></i> </div>
+                            </a>
+                            <ul class="">
+                                <li>
+                                    <a href="side-menu-light-wizard-layout-1.html" class="menu">
+                                        <div class="menu__icon"> <i data-feather="zap"></i> </div>
+                                        <div class="menu__title">Layout 1</div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="side-menu-light-wizard-layout-2.html" class="menu">
+                                        <div class="menu__icon"> <i data-feather="zap"></i> </div>
+                                        <div class="menu__title">Layout 2</div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="side-menu-light-wizard-layout-3.html" class="menu">
+                                        <div class="menu__icon"> <i data-feather="zap"></i> </div>
+                                        <div class="menu__title">Layout 3</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="menu">
+                                <div class="menu__icon"> <i data-feather="activity"></i> </div>
+                                <div class="menu__title"> Blog <i data-feather="chevron-down" class="menu__sub-icon "></i> </div>
+                            </a>
+                            <ul class="">
+                                <li>
+                                    <a href="side-menu-light-blog-layout-1.html" class="menu">
+                                        <div class="menu__icon"> <i data-feather="zap"></i> </div>
+                                        <div class="menu__title">Layout 1</div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="side-menu-light-blog-layout-2.html" class="menu">
+                                        <div class="menu__icon"> <i data-feather="zap"></i> </div>
+                                        <div class="menu__title">Layout 2</div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="side-menu-light-blog-layout-3.html" class="menu">
+                                        <div class="menu__icon"> <i data-feather="zap"></i> </div>
+                                        <div class="menu__title">Layout 3</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="menu">
+                                <div class="menu__icon"> <i data-feather="activity"></i> </div>
+                                <div class="menu__title"> Pricing <i data-feather="chevron-down" class="menu__sub-icon "></i> </div>
+                            </a>
+                            <ul class="">
+                                <li>
+                                    <a href="side-menu-light-pricing-layout-1.html" class="menu">
+                                        <div class="menu__icon"> <i data-feather="zap"></i> </div>
+                                        <div class="menu__title">Layout 1</div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="side-menu-light-pricing-layout-2.html" class="menu">
+                                        <div class="menu__icon"> <i data-feather="zap"></i> </div>
+                                        <div class="menu__title">Layout 2</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                     
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
-        <ul class="border-t border-theme-29 py-5 hidden">
-            <li>
-                <a href="javascript:;.html" class="menu menu--active">
-                    <div class="menu__icon"> <i data-feather="home"></i> </div>
-                    <div class="menu__title"> Dashboard </div>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:;" class="menu">
-                    <div class="menu__icon"> <i data-feather="box"></i> </div>
-                    <div class="menu__title"> Menu Layout <i data-feather="chevron-down" class="menu__sub-icon "></i>
-                    </div>
-                </a>
-                <ul class="">
-                    <li>
-                        <a href="index.html" class="menu menu--active">
-                            <div class="menu__icon"> <i data-feather="activity"></i> </div>
-                            <div class="menu__title"> Side Menu </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="simple-menu-light-dashboard-overview-1.html" class="menu menu--active">
-                            <div class="menu__icon"> <i data-feather="activity"></i> </div>
-                            <div class="menu__title"> Simple Menu </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="top-menu-light-dashboard-overview-1.html" class="menu menu--active">
-                            <div class="menu__icon"> <i data-feather="activity"></i> </div>
-                            <div class="menu__title"> Top Menu </div>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="menu__devider my-6"></li>
-
-
-        </ul>
-    </div>
-    <!-- END: Mobile Menu -->
-    <!-- BEGIN: Top Bar -->
+        <!-- BEGIN: Top Bar -->
     <div class="border-b border-theme-29 -mt-10 md:-mt-5 -mx-3 sm:-mx-8 px-3 sm:px-8 pt-3 md:pt-0 mb-10">
         <div class="top-bar-boxed flex items-center">
             <!-- BEGIN: Logo -->
@@ -142,78 +253,92 @@
         </div>
     </div>
     <!-- END: Top Bar -->
-    <!-- BEGIN: Top Menu -->
-    <nav class="top-nav">
+        
+        <!-- END: Mobile Menu -->
+        <div class="flex">
+            <!-- BEGIN: Side Menu -->
+              <nav class="side-nav">
         <ul>
             <li>
                 <a href="{{ route('painel-dashboard') }}"
-                    class="top-menu {{ request()->is('painel/dashboard*') ? 'top-menu--active' : '' }}">
-                    <div class="top-menu__icon"> <i data-feather="home"></i> </div>
-                    <div class="top-menu__title"> Dashboard</div>
+                    class="side-menu {{ request()->is('painel/dashboard*') ? 'side-menu--active' : '' }}">
+                    <div class="side-menu__icon"> <i data-feather="home"></i> </div>
+                    <div class="side-menu__title"> Dashboard</div>
                 </a>
             </li>
             <li>
                 <a href="{{ route('painel-alunos') }}"
-                    class="top-menu {{ request()->is('painel/alunos*') ? 'top-menu--active' : '' }}">
-                    <div class="top-menu__icon"> <i data-feather="users"></i> </div>
-                    <div class="top-menu__title"> Alunos</div>
+                    class="side-menu {{ request()->is('painel/alunos*') ? 'side-menu--active' : '' }}">
+                    <div class="side-menu__icon"> <i data-feather="users"></i> </div>
+                    <div class="side-menu__title"> Alunos</div>
                 </a>
             </li>
             <li>
                 <a href="{{ route('painel-financeiro') }}"
-                    class="top-menu {{ request()->is('painel/financeiro*') ? 'top-menu--active' : '' }}">
-                    <div class="top-menu__icon"> <i data-feather="dollar-sign"></i> </div>
-                    <div class="top-menu__title"> Financeiro</div>
+                    class="side-menu {{ request()->is('painel/financeiro*') ? 'side-menu--active' : '' }}">
+                    <div class="side-menu__icon"> <i data-feather="dollar-sign"></i> </div>
+                    <div class="side-menu__title"> Financeiro</div>
                 </a>
             </li>
             <li>
+            
                 <a href="{{ route('painel-cursos') }}"
-                    class="top-menu {{ request()->is('painel/cursos*') ? 'top-menu--active' : (request()->is('painel/turmas*') ? 'top-menu--active' : '') }} ">
-                    <div class="top-menu__icon"> <i data-feather="book"></i> </div>
-                    <div class="top-menu__title"> Cursos <i data-feather="chevron-down" class="top-menu__sub-icon"></i>
+                    class="side-menu {{ request()->is('painel/cursos*') ? 'side-menu--active' : (request()->is('painel/turmas*') ? 'top-menu--active' : '') }} ">
+                    <div class="side-menu__icon"> <i data-feather="book"></i> </div>
+                    <div class="side-menu__title"> Cursos <i data-feather="chevron-down" class="side-menu__sub-icon"></i>
                     </div>
                 </a>
-            </li>
+            <ul class="side-menu__sub-open">
+                            <li>
+                                <a href="{{ route('painel-categorias') }}" class="side-menu {{ request()->is('painel/categorias*') ? 'side-menu--active' : '' }}">
+                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title"> Categorias</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
             <li>
                 <a href="{{ route('painel-tutoria') }}"
-                    class="top-menu {{ request()->is('painel/tutoria*') ? 'top-menu--active' : '' }}">
-                    <div class="top-menu__icon"> <i data-feather="phone-forwarded"></i> </div>
-                    <div class="top-menu__title"> Tutoria <i data-feather="chevron-down" class="top-menu__sub-icon"></i>
+                    class="side-menu {{ request()->is('painel/tutoria*') ? 'side-menu--active' : '' }}">
+                    <div class="side-menu__icon"> <i data-feather="phone-forwarded"></i> </div>
+                    <div class="side-menu__title"> Tutoria <i data-feather="chevron-down" class="side-menu__sub-icon"></i>
                     </div>
                 </a>
 
             </li>
             <li>
                 <a href="{{ route('painel-professores') }}"
-                    class="top-menu {{ request()->is('painel/professores*') ? 'top-menu--active' : '' }}">
-                    <div class="top-menu__icon"> <i data-feather="pen-tool"></i> </div>
-                    <div class="top-menu__title"> Professores <i data-feather="chevron-down"
-                            class="top-menu__sub-icon"></i>
+                    class="side-menu {{ request()->is('painel/professores*') ? 'side-menu--active' : '' }}">
+                    <div class="side-menu__icon"> <i data-feather="pen-tool"></i> </div>
+                    <div class="side-menu__title"> Professores <i data-feather="chevron-down"
+                            class="side-menu__sub-icon"></i>
                     </div>
                 </a>
             </li>
             <li>
                 <a href="{{ route('painel-materiais') }}"
-                    class="top-menu {{ request()->is('painel/materiais*') ? 'top-menu--active' : '' }}">
-                    <div class="top-menu__icon"> <i data-feather="archive"></i> </div>
-                    <div class="top-menu__title"> Materiais <i data-feather="chevron-down"
-                            class="top-menu__sub-icon"></i>
+                    class="side-menu {{ request()->is('painel/materiais*') ? 'side-menu--active' : '' }}">
+                    <div class="side-menu__icon"> <i data-feather="archive"></i> </div>
+                    <div class="side-menu__title"> Materiais <i data-feather="chevron-down"
+                            class="side-menu__sub-icon"></i>
                     </div>
                 </a>
             </li>
         </ul>
     </nav>
     <!-- END: Top Menu -->
+            <!-- END: Side Menu -->
+    <!-- END: Top Menu -->
     <!-- BEGIN: Content -->
     <div class="content">
         @yield('content')
     </div>
-    <div class="footer">
-        <p class="text-center my-4 text-white">Desenvolvido por Luiz Felipe Gonçalves Sanches. ® Copyright
-            {{ date('Y') }}</p>
-    </div>
+    
     <!-- END: Content -->
     <!-- BEGIN: JS Assets-->
+            <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=["your-google-map-api"]&libraries=places"></script>
+        <script src="dist/js/app.js"></script>
     <script src="{{ url('dist/js/app.js') }}"></script>
     <!-- END: JS Assets-->
     @stack('custom-scripts')
