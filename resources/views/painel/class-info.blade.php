@@ -135,6 +135,12 @@
                             <input id="post-form-2" class="form-check-switch" @if ($class->live == '1') checked @endif type="checkbox"
                                 name="aovivo">
                         </div>
+
+                        <div class="col-span-12 lg:col-span-4">
+                            <label for="post-form-2" class="form-label"><strong>Unyflex</strong></label><br>
+                            <input id="post-form-2" class="form-check-switch" @if ($class->unyflex == '1') checked @endif type="checkbox"
+                                name="unyflex">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -149,6 +155,9 @@
             <h2 class="font-medium text-base mr-auto">
                 Paineis
             </h2>
+        <a href="/painel/paineis/adicionar/{{$class->id}}">
+        <button value="Adicionar Painel" class="btn btn-primary mr-auto mb-2">Adicionar Painel</button>
+        </a>
         </div>
         <div class="p-5">
             <div class="grid grid-cols-12 gap-x-5">
@@ -192,21 +201,14 @@
                                             @endif
                                         </td>
                                         <td class="border">
-                                            @foreach ($panel->teachers as $teacher)
-                                                @if (sizeof($panel->teachers) > 1)
-                                                    {{ $teacher->name . ',' }}
-                                                @else
-                                                    {{ $teacher->name }}
-                                                @endif
-                                            @endforeach
+                                          {{$panel->teacher_id}}
                                         </td>
                                         <td class="border">
                                             {{ sizeof($panel->video_lesson) }}
                                         </td>
                                         <td class="border">
                                             <div class="flex justify-center">
-                                                <a class="flex text-theme-1 mr-3" href="javascript:;" data-toggle="modal"
-                                                    data-target="#infoPainel{{ $panel->id }}">
+                                                <a class="flex text-theme-1 mr-3" href="/painel/paineis/{{$panel->id}}">
                                                     <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Editar
                                                 </a>
                                                 <a class="flex text-theme-6 mr-3" href="javascript:;" data-toggle="modal"

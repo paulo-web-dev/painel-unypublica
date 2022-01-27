@@ -104,14 +104,43 @@
                 </div>
             </div>
         </div>
-        <div class="overflow-x-auto scrollbar-hidden">
-            <div id="tabelaAlunos" class="mt-5 table-report table-report--tabulator">
-
-            </div>
+       <div class="overflow-x-auto scrollbar-hidden">
+          
         </div>
-
+ <!-- END: Top Bar -->
+                
+                <div class="grid grid-cols-12 gap-6 mt-5">
+                    <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
+                        <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+                        </div>
+                    </div>
+                    <!-- BEGIN: Users Layout -->
+                     @foreach ($students as $student)
+                    <div class="intro-y col-span-12 md:col-span-6">
+                        <div class="box">
+                            <div class="flex flex-col lg:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+                                <div class="w-24 h-24 lg:w-12 lg:h-12 image-fit lg:mr-1">
+                                    <img  class="rounded-full" src="http://127.0.0.1:8000/dist/images/profile-15.jpg">
+                                </div>
+                                <div class="lg:ml-2 lg:mr-auto text-center lg:text-left mt-3 lg:mt-0">
+                                    <a href="" class="font-medium">{{$student->name}} </a> 
+                                    <div class="text-slate-500 text-xs mt-0.5">{{$student->email}}</div>
+                                     <div class="text-slate-500 text-xs mt-0.5">{{$student->city}}-{{$student->state}}</div>
+                                </div>
+                                <div class="flex -ml-2 lg:ml-0 lg:justify-end mt-3 lg:mt-0">
+                                
+                                <a href="/painel/alunos/{{$student->id}}"> <button class="btn btn-primary py-1 px-2 mr-2">Editar</button></a>
+                                <a  href="/painel/alunos/matricula/adicionar/{{$student->id}}">  <button  class="btn btn-outline-secondary py-1 px-2">Matricular</button></a>
+                                 </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                  @endforeach
+                    </div>
+                    </div>
     </div>
-
+ 
 @endsection
 @push('custom-scripts')
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

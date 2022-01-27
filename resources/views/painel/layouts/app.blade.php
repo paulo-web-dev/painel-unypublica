@@ -283,7 +283,7 @@
             <li>
             
                 <a href="{{ route('painel-cursos') }}"
-                    class="side-menu {{ request()->is('painel/cursos*') ? 'side-menu--active' : (request()->is('painel/turmas*') ? 'top-menu--active' : '') }} ">
+                    class="side-menu {{ request()->is('painel/cursos*') ? 'side-menu--active' : (request()->is('painel/categorias*') ? 'side-menu--active' : '') }} ">
                     <div class="side-menu__icon"> <i data-feather="book"></i> </div>
                     <div class="side-menu__title"> Cursos <i data-feather="chevron-down" class="side-menu__sub-icon"></i>
                     </div>

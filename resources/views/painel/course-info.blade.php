@@ -186,7 +186,7 @@
                 </div>
             </div>
             <div class="flex justify-end mt-4">
-                <a href="" class="btn btn-primary mr-auto mb-2">Cadastrar turma</a>
+                <a href="{{ route('adicionar-turma' , ['course' => $course->id]) }} " class="btn btn-primary mr-auto mb-2">Cadastrar turma</a>
             </div>
         </div>
     </div>
