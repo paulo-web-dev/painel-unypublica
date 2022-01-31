@@ -16,6 +16,11 @@ class CreateCoursesTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('title')->comment('Título do curso');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onDelete('CASCADE');
             $table->enum('status', ['able', 'disabled'])->default('disabled')->comment('Status do curso');
             $table->string('slug');
             $table->timestamps();
