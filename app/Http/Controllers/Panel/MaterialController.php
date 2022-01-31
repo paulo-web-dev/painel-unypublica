@@ -43,25 +43,19 @@ class MaterialController extends Controller
 
     public function cadMaterial(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'nome' => 'required|max:255',
-            'tipo' => 'required',
-            'status' => 'required',
-            'arquivo' => 'required'
-        ]);
 
-        if ($validator->fails()) {
-            return redirect()->route('adicionar-material')->withErrors($validator);
-        }
+
+        
 
         $material = new Material();
         $material->name = $request->nome;
-        $material->file_name = $request->arquivo->getClientOriginalName();
+        $material->file_name = $request->file->getClientOriginalName();
         $material->type = $request->tipo;
         $material->status = $request->status;
-
+        $name=$request->file->getClientOriginalName();
         if ($material->save()) {
-            $request->file('arquivo')->store('materials');
+           
+           $request->file('file')->storeAs('materials',$name);
             return redirect()->route('informacao-material', ['material' => $material->id])->with('message', 'success');
         } else {
             return redirect()->route('adicionar-material', ['material' => $material->id])->with('message', 'erro_cadastro');

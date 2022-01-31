@@ -15,7 +15,7 @@
                 <div class="relative flex items-center p-5">
                     <div class="w-12 h-12 image-fit">
                         <img alt="Rubick Tailwind HTML Admin Template" class="rounded-full"
-                            src="{{ url('dist/images/profile-9.jpg') }}">
+                            src="https://unipublicabrasil.com.br/dev-paulo/storage/app/alunos/perfil/{{$student->photo}}">
                     </div>
                     <div class="ml-4 mr-auto">
                         <div class="font-medium text-base">{{ $student->name }}</div>
@@ -41,7 +41,7 @@
             <div id="informacoes-pessoais" role="tabpanel" aria-labelledby="informacoes-pessoais-tab"
                 class="grid grid-cols-12 gap-6 tab-pane active">
                 <form action="{{ route('atualiza-aluno', ['student' => $student->id]) }}"
-                    class="grid grid-cols-12 gap-6 col-span-12 xxl:col-span-12" method="post">
+                    class="grid grid-cols-12 gap-6 col-span-12 xxl:col-span-12" enctype="multipart/form-data" data-single="true"  method="post">
                     @csrf
                     @method('PUT')
 
@@ -55,7 +55,7 @@
                         <div class="flex flex-1 px-5 items-center justify-center lg:justify-start">
                             <div class="w-20 h-20 sm:w-24 sm:h-24 flex-none lg:w-24 lg:h-24 image-fit relative">
                                 <img alt="Rubick Tailwind HTML Admin Template" class="rounded-full"
-                                    src="{{ url('dist/images/profile-11.jpg') }}">
+                                    src="https://unipublicabrasil.com.br/dev-paulo/storage/app/alunos/perfil/{{$student->photo}}">
                                 <div
                                     class="absolute mb-1 mr-1 flex items-center justify-center bottom-0 right-0 bg-theme-1 rounded-full p-2">
                                     <i class="w-4 h-4 text-white" data-feather="camera"></i>
@@ -169,6 +169,18 @@
                                 </div>
                             </div>
                         </div>
+                           <div class="col-span-12 xl:col-span-6" style="margin-left:100px; margin-right:100px; margin-top:30px;margin-bottom:30px">
+                        <label class="form-label"><strong>Atualizar Foto do Aluno</strong></label>
+                        <div class="border-2 border-dashed dark:border-dark-5 rounded-md pt-4">
+                            <div class="px-4 pt-24 pb-24 flex items-center justify-center cursor-pointer relative">
+                                <div id="areaArquivo">
+                                    <i data-feather="image" class="w-4 h-4 mr-2"></i>
+                                    <span class="mr-1 font-bold">Atualizar Foto do Aluno</span>
+                                </div>
+                                <input type="file" id="file" name="file"
+                                    class="w-full h-full top-0 left-0 absolute opacity-0">
+                            </div>
+                        </div></div>
                     </div>
                     <div class="intro-y col-span-12 xxl:col-span-12 mt-12 px-5 pb-4">
                         <button class="btn btn-primary w-full  mr-2 mb-2"> <i data-feather="activity"
@@ -528,5 +540,20 @@
 
 @endsection
 @push('custom-scripts')
+      <script>
+        (function(cash) {
+            document.getElementById('file').onchange = function() {
+                var arquivo = document.getElementById('file').value;
+                var nomearquivo = arquivo.substring(12);
+                var modeloArquivo =
+                    '<div class="file box rounded-md px-5 sm:px-5 relative zoom-in">' +
+                    '<p class="w-1/5 file__icon file__icon--file mx-auto">' +
+                    '</p>' +
+                    '<p class="block font-medium mt-4 text-center truncate">' + nomearquivo + '</p>' +
+                    '</div>';
+                cash('#areaArquivo').html(modeloArquivo);
+            }
+        })(cash);
+    </script>
     <script src="{{ url('dist/js/modal-info.js') }}"></script>
 @endpush

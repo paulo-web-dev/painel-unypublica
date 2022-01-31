@@ -10,7 +10,7 @@
             </h2>
         </div>
 
-        <form action="{{ route('cadastrar-professor') }}" method="post">
+        <form action="{{ route('cadastrar-professor') }}" enctype="multipart/form-data" data-single="true" method="post">
             <div class="p-5">
                 @foreach ($errors->all() as $error)
                     <div class="alert alert-danger alert-dismissible show flex items-center mb-2" role="alert">
@@ -72,7 +72,20 @@
                                 <textarea class="form-control editor" name="full_resume" id="" cols="30"
                                     rows="15"></textarea>
                             </div>
+                        </div><br>
+                         <div class="col-span-12 xl:col-span-6">
+                        <label class="form-label"><strong>Foto do Professor</strong></label>
+                        <div class="border-2 border-dashed dark:border-dark-5 rounded-md pt-4">
+                            <div class="px-4 pt-24 pb-24 flex items-center justify-center cursor-pointer relative">
+                                <div id="areaArquivo">
+                                    <i data-feather="image" class="w-4 h-4 mr-2"></i>
+                                    <span class="mr-1 font-bold">Adicionar Foto</span>
+                                </div>
+                                <input type="file" id="file" name="file"
+                                    class="w-full h-full top-0 left-0 absolute opacity-0">
+                            </div>
                         </div>
+                    </div>
                     </div>
                 </div>
                 <div class="flex justify-end mt-4">
@@ -86,5 +99,19 @@
     </div>
 @endsection
 @push('custom-scripts')
-
+      <script>
+        (function(cash) {
+            document.getElementById('file').onchange = function() {
+                var arquivo = document.getElementById('file').value;
+                var nomearquivo = arquivo.substring(12);
+                var modeloArquivo =
+                    '<div class="file box rounded-md px-5 sm:px-5 relative zoom-in">' +
+                    '<p class="w-1/5 file__icon file__icon--file mx-auto">' +
+                    '</p>' +
+                    '<p class="block font-medium mt-4 text-center truncate">' + nomearquivo + '</p>' +
+                    '</div>';
+                cash('#areaArquivo').html(modeloArquivo);
+            }
+        })(cash);
+    </script>
 @endpush

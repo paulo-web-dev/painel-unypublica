@@ -57,8 +57,11 @@ class StudentController extends Controller
         $student->district = $request->bairro;
         $student->city = $request->cidade;
         $student->state = $request->uf;
+        $student->photo = $request->file->getClientOriginalName();
+        $name=$request->file->getClientOriginalName();
 
         if ($student->save()) {
+            $request->file('file')->storeAs('alunos/perfil', $name);
             return redirect()->route('informacao-aluno', ['id' => $student->id])->with('message', 'success');
         } else {
             return redirect()->route('informacao-aluno', ['id' => $student->id])->with('message', 'erro');
@@ -79,7 +82,13 @@ class StudentController extends Controller
         $student->house_number = $request->num;
         $student->district = $request->bairro;
         $student->city = $request->cidade;
-        $student->state = $request->uf;;
+        $student->state = $request->uf;
+        if($request->file('file')!=''){
+            $student->photo = $request->file->getClientOriginalName();
+            $name=$request->file->getClientOriginalName();
+            $request->file('file')->storeAs('alunos/perfil', $name);
+        }
+      
 
         if ($student->save()) {
             return redirect()->route('informacao-aluno', ['id' => $student->id])->with('message', 'atualizado');

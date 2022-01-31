@@ -29,6 +29,12 @@ class Panel extends Model
         'updated_at',
     ];
 
+
+    public function teacher()
+    {
+        return $this->hasOne(Teacher::class, 'id', 'teacher_id', );
+    }
+
     public function classes()
     {
         return $this->belongsTo(Classes::class, 'classes_id', 'id');

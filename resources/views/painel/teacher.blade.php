@@ -26,7 +26,7 @@
                         <div class="w-full flex flex-col lg:flex-row items-center">
                             <div class="w-16 h-16 image-fit">
                                 <img alt="Rubick Tailwind HTML Admin Template" class="rounded-full"
-                                    src="{{ url('dist/images/profile-11.jpg') }}">
+                                    src="https://unipublicabrasil.com.br/dev-paulo/storage/app/docentes/{{$teacher->photo}}">
                             </div>
                             <div class="lg:ml-4 text-center lg:text-left mt-3 lg:mt-0">
                                 <a href="{{ route('informacao-professor', ['teacher' => $teacher->id]) }}"

@@ -21,7 +21,7 @@
         </div>
         <!-- END: Profile Menu -->
         <div class="col-span-12 lg:col-span-8 xxl:col-span-9 tab-content">
-            <form action="{{ route('cadastrar-aluno') }}" method="post">
+            <form action="{{ route('cadastrar-aluno') }}" method="post" enctype="multipart/form-data" data-single="true" method="post">
                 @csrf
                 <div id="informacoes-pessoais" role="tabpanel" aria-labelledby="informacoes-pessoais-tab"
                     class="grid grid-cols-12 gap-6 tab-pane active">
@@ -33,6 +33,7 @@
                                 Informações Pessoais
                             </h2>
                         </div>
+                        
                         <div class="flex flex-1 px-5 items-center justify-center lg:justify-start">
                             <div class="w-20 h-20 sm:w-24 sm:h-24 flex-none lg:w-24 lg:h-24 image-fit relative">
                                 <img alt="Rubick Tailwind HTML Admin Template" class="rounded-full"
@@ -141,11 +142,25 @@
                                             <path
                                                 d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                         </svg>
+
+                                
                                     </div>
                                 </div>
+                            </div></div>
+                    
+                      <div class="col-span-12 xl:col-span-6" style="margin-left:100px; margin-right:100px; margin-top:30px;margin-bottom:30px">
+                        <label class="form-label"><strong>Foto do Aluno</strong></label>
+                        <div class="border-2 border-dashed dark:border-dark-5 rounded-md pt-4">
+                            <div class="px-4 pt-24 pb-24 flex items-center justify-center cursor-pointer relative">
+                                <div id="areaArquivo">
+                                    <i data-feather="image" class="w-4 h-4 mr-2"></i>
+                                    <span class="mr-1 font-bold">Foto do Aluno</span>
+                                </div>
+                                <input type="file" id="file" name="file"
+                                    class="w-full h-full top-0 left-0 absolute opacity-0">
                             </div>
-                        </div>
-                    </div>
+                        </div></div></div></div>   </div>
+                    
                     <div class="intro-y box col-span-12 xxl:col-span-12">
                         <button type="submit" class="btn btn-primary w-full  mr-2 mb-2"> <i data-feather="activity"
                                 class="w-4 h-4 mr-2"></i>
@@ -156,3 +171,20 @@
         </div>
     </div>
 @endsection
+@push('custom-scripts')
+      <script>
+        (function(cash) {
+            document.getElementById('file').onchange = function() {
+                var arquivo = document.getElementById('file').value;
+                var nomearquivo = arquivo.substring(12);
+                var modeloArquivo =
+                    '<div class="file box rounded-md px-5 sm:px-5 relative zoom-in">' +
+                    '<p class="w-1/5 file__icon file__icon--file mx-auto">' +
+                    '</p>' +
+                    '<p class="block font-medium mt-4 text-center truncate">' + nomearquivo + '</p>' +
+                    '</div>';
+                cash('#areaArquivo').html(modeloArquivo);
+            }
+        })(cash);
+    </script>
+@endpush

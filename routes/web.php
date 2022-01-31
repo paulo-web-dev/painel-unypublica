@@ -17,13 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/painel', function () {
     return redirect()->route('painel-login');
 });
-
-
+Route::get('', 'unypublicaController@index');
+Route::get('/agendados', 'unypublicaController@agendados');
+Route::get('/curso/{slug}', 'unypublicaController@curso');
 //rotas da api
 Route::get('/curso/{id}', 'CourseController@show');
 Route::get('/categoria/{category}', 'CategoryController@show');
 Route::get('/categoria', 'CategoryController@showAll');
-Route::get('/curso', 'CourseController@showAll');
+Route::get('/cursos', 'CourseController@showAll');
 Route::get('/turma/{classes}', 'ClassesController@show');
 Route::get('/aluno/{id}', 'StudentController@showStudent');
 Route::get('/aluno', 'StudentController@show');
@@ -104,7 +105,8 @@ Route::delete('/painel/categorias/excluir/{category}', 'Panel\CategoryController
 
 
 //rotas de informações pertinentes as turmas
-Route::get('/painel/turmas/adicionar', 'Panel\ClassController@formTurma')->name('adicionar-turma');
+Route::get('/painel/turmas/adicionar/{course}', 'Panel\ClassController@formTurma')->name('adicionar-turma');
+Route::post('/painel/turmas/cadastrar', 'Panel\ClassController@cadTurma')->name('cadastrar-turma');
 Route::get('/painel/turmas/{classes}', 'Panel\ClassController@infoTurma')->name('informacao-turma');
 Route::get('/painel/turmas/excluir/{classes}', 'Panel\ClassController@destroyTurma')->name('excluir-turma');
 Route::put('/painel/turmas/atualizar/{classes}', 'Panel\ClassController@updTurma')->name('atualizar-turma');
@@ -118,7 +120,11 @@ Route::get('/painel/financeiro/fluxo-de-caixa/filtrar' , 'Panel\FinanceControlle
 Route::get('/painel/financeiro/fluxo-de-caixa/listar' , 'Panel\FinanceController@fluxo')->name('fluxo');
 Route::post('/painel/financeiro/fluxo-de-caixa/cadastrar', 'Panel\FinanceController@cadFluxo')->name('cadastrar-fluxo');
 Route::delete('/painel/financeiro/fluxo-de-caixa/excluir/{fluxo}', 'Panel\FinanceController@destroyFluxo')->name('excluir-fluxo');
+
 //rotas de informações pertinentes aos paineis
+Route::get('/painel/paineis/adicionar/{class}' , 'Panel\PanelController@formPainel')->name('adicionar-painel');
+Route::post('/painel/paineis/cadastrar', 'Panel\PanelController@cadPainel')->name('cadastrar-painel');
+Route::get('/painel/paineis/{panel}', 'Panel\PanelController@infoPainel')->name('informacao-painel');
 Route::put('/painel/paineis/atualizar/{panel}', 'Panel\PanelController@updPainel')->name('atualizar-painel');
 Route::delete('/painel/painel/excluir/{panel}', 'Panel\PanelController@destroyPainel')->name('excluir-painel');
 

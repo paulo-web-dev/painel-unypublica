@@ -65,7 +65,7 @@
                                     <i data-feather="image" class="w-4 h-4 mr-2"></i>
                                     <span class="mr-1 font-bold">Adicionar arquivo</span>
                                 </div>
-                                <input type="file" id="arquivo" name="arquivo"
+                                <input type="file" id="file" name="file"
                                     class="w-full h-full top-0 left-0 absolute opacity-0">
                             </div>
                         </div>
@@ -84,8 +84,8 @@
 @push('custom-scripts')
     <script>
         (function(cash) {
-            document.getElementById('arquivo').onchange = function() {
-                var arquivo = document.getElementById('arquivo').value;
+            document.getElementById('file').onchange = function() {
+                var arquivo = document.getElementById('file').value;
                 var nomearquivo = arquivo.substring(12);
                 var modeloArquivo =
                     '<div class="file box rounded-md px-5 sm:px-5 relative zoom-in">' +

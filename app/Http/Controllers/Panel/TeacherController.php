@@ -38,14 +38,7 @@ class TeacherController extends Controller
 
     public function cadProfessor(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'nome' => 'required|max:255',
-            'cpf' => 'required|unique:teachers,cpf'
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->route('adicionar-professor')->withErrors($validator);
-        }
+        
 
         $teacher = new Teacher();
         $teacher->name = $request->nome;
@@ -55,8 +48,11 @@ class TeacherController extends Controller
         $teacher->short_resume = $request->short_resume;
         $teacher->full_resume = $request->full_resume;
         $teacher->status = $request->status;
-
+        $teacher->photo = $request->file->getClientOriginalName();
+        $name=$request->file->getClientOriginalName();
+        
         if ($teacher->save()) {
+           $request->file('file')->storeAs('docentes', $name);
             return redirect()->route('informacao-professor', ['teacher' => $teacher->id])->with('message', 'success');
         } else {
             return redirect()->route('informacao-professor', ['teacher' => $teacher->id])->with('message', 'erro');

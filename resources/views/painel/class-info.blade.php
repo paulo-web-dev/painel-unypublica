@@ -74,6 +74,13 @@
                                     <input id="update-profile-form-7" type="text" name="subtitulo" class="form-control"
                                         placeholder="Subtítulo da turma" value="{{ $class->subtitle }}">
                                 </div>
+                             
+                                <div class="mt-3">
+                                    <label for="update-profile-form-7"
+                                        class="form-label"><strong>Slug</strong></label>
+                                    <input id="update-profile-form-7" type="text" name="slug" class="form-control"
+                                        placeholder="Subtítulo da turma" value="{{ $class->slug }}">
+                                </div>
                                 <div class="mt-3">
                                     <label for="dataTermino" class="form-label"><strong>Data de Termino</strong></label>
                                     <div class="relative mx-auto">
@@ -104,7 +111,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                             </div>
                     </div>
                 </div>
                 <!-- END: Personal Information -->
@@ -135,6 +142,24 @@
                             <input id="post-form-2" class="form-check-switch" @if ($class->live == '1') checked @endif type="checkbox"
                                 name="aovivo">
                         </div>
+
+                        <div class="col-span-12 lg:col-span-4">
+                            <label for="post-form-2" class="form-label"><strong>Unyflex</strong></label><br>
+                            <input id="post-form-2" class="form-check-switch" @if ($class->unyflex == '1') checked @endif type="checkbox"
+                                name="unyflex">
+                        </div>
+                         <div class="col-span-12 xl:col-span-6" >
+                        <label class="form-label"><strong>Atualizar Banner</strong></label>
+                        <div class="border-2 border-dashed dark:border-dark-5 rounded-md pt-4">
+                            <div class="px-4 pt-24 pb-24 flex items-center justify-center cursor-pointer relative">
+                                <div id="areaArquivo">
+                                    <i data-feather="image" class="w-4 h-4 mr-2"></i>
+                                    <span class="mr-1 font-bold">Atualizar Banner</span>
+                                </div>
+                                <input type="file" id="file" name="file"
+                                    class="w-full h-full top-0 left-0 absolute opacity-0">
+                            </div>
+                        </div></div>
                     </div>
                 </div>
             </div>
@@ -149,6 +174,9 @@
             <h2 class="font-medium text-base mr-auto">
                 Paineis
             </h2>
+        <a href="/painel/paineis/adicionar/{{$class->id}}">
+        <button value="Adicionar Painel" class="btn btn-primary mr-auto mb-2">Adicionar Painel</button>
+        </a>
         </div>
         <div class="p-5">
             <div class="grid grid-cols-12 gap-x-5">
@@ -192,21 +220,14 @@
                                             @endif
                                         </td>
                                         <td class="border">
-                                            @foreach ($panel->teachers as $teacher)
-                                                @if (sizeof($panel->teachers) > 1)
-                                                    {{ $teacher->name . ',' }}
-                                                @else
-                                                    {{ $teacher->name }}
-                                                @endif
-                                            @endforeach
+                                          {{$panel->teacher_id}}
                                         </td>
                                         <td class="border">
                                             {{ sizeof($panel->video_lesson) }}
                                         </td>
                                         <td class="border">
                                             <div class="flex justify-center">
-                                                <a class="flex text-theme-1 mr-3" href="javascript:;" data-toggle="modal"
-                                                    data-target="#infoPainel{{ $panel->id }}">
+                                                <a class="flex text-theme-1 mr-3" href="/painel/paineis/{{$panel->id}}">
                                                     <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Editar
                                                 </a>
                                                 <a class="flex text-theme-6 mr-3" href="javascript:;" data-toggle="modal"
@@ -469,6 +490,21 @@
     @endif
 @endsection
 @push('custom-scripts')
+   <script>
+        (function(cash) {
+            document.getElementById('file').onchange = function() {
+                var arquivo = document.getElementById('file').value;
+                var nomearquivo = arquivo.substring(12);
+                var modeloArquivo =
+                    '<div class="file box rounded-md px-5 sm:px-5 relative zoom-in">' +
+                    '<p class="w-1/5 file__icon file__icon--file mx-auto">' +
+                    '</p>' +
+                    '<p class="block font-medium mt-4 text-center truncate">' + nomearquivo + '</p>' +
+                    '</div>';
+                cash('#areaArquivo').html(modeloArquivo);
+            }
+        })(cash);
+    </script>
     @if (session()->get('message'))
         <script>
             cash(function() {
