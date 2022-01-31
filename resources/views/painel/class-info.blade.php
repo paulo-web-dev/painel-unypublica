@@ -148,6 +148,7 @@
                             <input id="post-form-2" class="form-check-switch" @if ($class->unyflex == '1') checked @endif type="checkbox"
                                 name="unyflex">
                         </div>
+<<<<<<< HEAD
                          <div class="col-span-12 xl:col-span-6" >
                         <label class="form-label"><strong>Atualizar Banner</strong></label>
                         <div class="border-2 border-dashed dark:border-dark-5 rounded-md pt-4">
@@ -160,6 +161,8 @@
                                     class="w-full h-full top-0 left-0 absolute opacity-0">
                             </div>
                         </div></div>
+=======
+>>>>>>> 187ac075d21761cbbf15262f054ddfa464906447
                     </div>
                 </div>
             </div>

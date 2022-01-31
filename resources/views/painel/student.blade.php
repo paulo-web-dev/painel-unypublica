@@ -120,7 +120,11 @@
                         <div class="box">
                             <div class="flex flex-col lg:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
                                 <div class="w-24 h-24 lg:w-12 lg:h-12 image-fit lg:mr-1">
+<<<<<<< HEAD
                                     <img  class="rounded-full" src="https://unipublicabrasil.com.br/dev-paulo/storage/app/alunos/perfil/{{$student->photo}}">
+=======
+                                    <img  class="rounded-full" src="http://127.0.0.1:8000/dist/images/profile-15.jpg">
+>>>>>>> 187ac075d21761cbbf15262f054ddfa464906447
                                 </div>
                                 <div class="lg:ml-2 lg:mr-auto text-center lg:text-left mt-3 lg:mt-0">
                                     <a href="" class="font-medium">{{$student->name}} </a> 

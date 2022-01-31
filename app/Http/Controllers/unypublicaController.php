@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Category;
 use App\Models\Classes;
+<<<<<<< HEAD
 use App\Models\Panel;
+=======
+>>>>>>> 187ac075d21761cbbf15262f054ddfa464906447
 use App\Models\CategoryCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -29,6 +32,7 @@ class unypublicaController extends Controller
         ]);
     }
 
+<<<<<<< HEAD
     public function curso($slug)
     { 
 
@@ -48,6 +52,8 @@ class unypublicaController extends Controller
     }
 
 
+=======
+>>>>>>> 187ac075d21761cbbf15262f054ddfa464906447
 
     public function agendados()
     { 

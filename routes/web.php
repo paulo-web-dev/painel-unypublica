@@ -19,7 +19,11 @@ Route::get('/painel', function () {
 });
 Route::get('', 'unypublicaController@index');
 Route::get('/agendados', 'unypublicaController@agendados');
+<<<<<<< HEAD
 Route::get('/curso/{slug}', 'unypublicaController@curso');
+=======
+
+>>>>>>> 187ac075d21761cbbf15262f054ddfa464906447
 //rotas da api
 Route::get('/curso/{id}', 'CourseController@show');
 Route::get('/categoria/{category}', 'CategoryController@show');

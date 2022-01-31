@@ -65,7 +65,11 @@
                                         <div class="box-cursos">
                                             <div class="box-content-top">
                                                 <a href="https://unipublicabrasil.com.br/curso.php?curso=portal-ouvidoria-e-lgpd-estudo-pratico&amp;id=2527">
+<<<<<<< HEAD
                                                     <img src="https://unipublicabrasil.com.br/dev-paulo/storage/app/cursos/banner/{{$agendado->photo}}" class="img-fluid" alt="">
+=======
+                                                    <img src="https://www.unipublicabrasil.com.br/uploads/cursos/bef66d6730b491d4ec64fd213f98e4c413122021190124.png" class="img-fluid" alt="">
+>>>>>>> 187ac075d21761cbbf15262f054ddfa464906447
                                                 </a>
                                                 <p><i class="fas fa-map-marker-alt"></i>Curitiba - PR </p>
                                                 <div class="box-data">

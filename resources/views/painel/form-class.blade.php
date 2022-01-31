@@ -72,6 +72,7 @@
                                     <input id="update-profile-form-7" type="text" name="subtitulo" class="form-control"
                                         placeholder="Subtítulo da turma" value="">
                                 </div>
+<<<<<<< HEAD
                                 <div class="col-span-12 xl:col-span-6">
                                 <div class="mt-3">
                                     <label for="update-profile-form-7"
@@ -79,6 +80,8 @@
                                     <input id="update-profile-form-7" type="text" name="slug" class="form-control"
                                         placeholder="Subtítulo da turma" value="">
                                 </div>
+=======
+>>>>>>> 187ac075d21761cbbf15262f054ddfa464906447
                                 <div class="mt-3">
                                     <label for="dataTermino" class="form-label"><strong>Data de Termino</strong></label>
                                     <div class="relative mx-auto">
@@ -120,6 +123,7 @@
                                 name="unyflex">
                         </div>
                     </div>
+<<<<<<< HEAD
                       <div class="col-span-12 xl:col-span-6" >
                         <label class="form-label"><strong>Adicionar Banner</strong></label>
                         <div class="border-2 border-dashed dark:border-dark-5 rounded-md pt-4">
@@ -132,6 +136,8 @@
                                     class="w-full h-full top-0 left-0 absolute opacity-0">
                             </div>
                         </div></div>
+=======
+>>>>>>> 187ac075d21761cbbf15262f054ddfa464906447
                             </div>
                         </div>
                     </div>
@@ -159,6 +165,7 @@
         </script>
     @endif
     <script>
+<<<<<<< HEAD
         (function(cash) {
             document.getElementById('file').onchange = function() {
                 var arquivo = document.getElementById('file').value;
@@ -174,6 +181,8 @@
         })(cash);
     </script>
     <script>
+=======
+>>>>>>> 187ac075d21761cbbf15262f054ddfa464906447
         cash(".data").each(function() {
             let options = {
                 autoApply: true,

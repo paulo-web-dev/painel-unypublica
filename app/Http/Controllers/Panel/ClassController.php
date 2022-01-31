@@ -53,7 +53,10 @@ class ClassController extends Controller
         $class->subtitle = $request->subtitulo;
         $class->status = $request->status;
         $class->workload = $request->cargaHoraria;
+<<<<<<< HEAD
         $class->slug=$request->slug;
+=======
+>>>>>>> 187ac075d21761cbbf15262f054ddfa464906447
         $dataInicio = $request->dataInicio;
         $dataInicio2= date('Y-m-d', strtotime($dataInicio));
         $dataTermino = $request->dataTermino;
@@ -66,11 +69,16 @@ class ClassController extends Controller
         $class->confirmed = $confirmado;
         $class->live = $aovivo;
         $class->unyflex = $unyflex;
+<<<<<<< HEAD
         $class->photo = $request->file->getClientOriginalName();
         $name=$request->file->getClientOriginalName();
        
         if ($class->save()) {
             $request->file('file')->storeAs('cursos/banner', $name);
+=======
+        if ($class->save()) {
+
+>>>>>>> 187ac075d21761cbbf15262f054ddfa464906447
             return redirect()->route('informacao-turma', ['classes' => $class->id])->with('message', 'course_created');
         } else {
             return redirect()->route('informacao-turma', ['classes' => $class->id])->with('message', 'course_create_error');
@@ -122,7 +130,10 @@ class ClassController extends Controller
         $classes->type = $request->tipo;
         $classes->workload = $request->cargaHoraria;
         $classes->unyflex = $unyflex;
+<<<<<<< HEAD
         $classes->slug=$request->slug;
+=======
+>>>>>>> 187ac075d21761cbbf15262f054ddfa464906447
         $classes->confirmed = $request->confirmado == 'on' ? '1' : '0';
         $classes->live = $request->aovivo == 'on' ? '1' : '0';
         if($request->file('file')!=''){

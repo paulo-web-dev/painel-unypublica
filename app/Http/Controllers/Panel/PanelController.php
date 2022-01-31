@@ -63,7 +63,11 @@ class PanelController extends Controller
        // dd($panel->id)
         if ($panel->save()) {
         
+<<<<<<< HEAD
             if($request->unyflex==1){
+=======
+            if($request->unyflex=1){
+>>>>>>> 187ac075d21761cbbf15262f054ddfa464906447
                $video= new VideoLesson();
                $video->panel_id=$panel->id;
                $video->link=$request->link;

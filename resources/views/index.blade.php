@@ -93,7 +93,11 @@
                                 <div class="box-cursos">
                                     <div class="box-content-top">
                                         <a href="https://unipublicabrasil.com.br/curso.php?curso=portal-ouvidoria-e-lgpd-estudo-pratico&id=2527">
+<<<<<<< HEAD
                                             <img src="https://unipublicabrasil.com.br/dev-paulo/storage/app/cursos/banner/{{$presencial->photo}}" class="img-fluid" alt="">
+=======
+                                            <img src="https://www.unipublicabrasil.com.br/uploads/cursos/bef66d6730b491d4ec64fd213f98e4c413122021190124.png" class="img-fluid" alt="">
+>>>>>>> 187ac075d21761cbbf15262f054ddfa464906447
                                         </a>
                                         <p><i class="fas fa-map-marker-alt"></i>Curitiba </p>
                                         <div class="box-data">
@@ -113,7 +117,11 @@
                                      
                                     </ul>
 
+<<<<<<< HEAD
                                     <a href="https://dev-paulo.unipublicabrasil.com.br/curso/{{$presencial->slug}}" class="btn-unyflex-light">Ver Programação Completa</a>
+=======
+                                    <a href="https://unipublicabrasil.com.br/curso.php?curso=" class="btn-unyflex-light">Ver Programação Completa</a>
+>>>>>>> 187ac075d21761cbbf15262f054ddfa464906447
                                 </div>
                             </div> 
                          @endforeach
@@ -145,7 +153,11 @@
                                 <div class="box-cursos">
                                     <div class="box-content-top">
                                         <a href="https://unyflex.com.br/curso/255">
+<<<<<<< HEAD
                                             <img src="https://unipublicabrasil.com.br/dev-paulo/storage/app/cursos/banner/{{$online->photo}}" class="img-fluid" alt="">
+=======
+                                            <img src="https://unyflex.com.br/ava/views/assets/images/box-curso/265.png" class="img-fluid" alt="">
+>>>>>>> 187ac075d21761cbbf15262f054ddfa464906447
                                         </a>
                                         <h6></h6>
                                         <p><i class="fas fa-circle"></i> Ao Vivo (Online)</p>
